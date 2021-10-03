@@ -89,7 +89,7 @@
 		methods: {
 			playVideo(lesson) {
 				this.pre = true;
-				this.currentVideo = lesson.url;
+				this.currentVideo = process.env.VUE_APP_VIDEO_URL + lesson.url;
 			}
 		}
 	};
@@ -107,4 +107,3 @@
 		font-weight: bold;
 	}
 </style>
-UPDATE my_table SET my_col= REGEXP_REPLACE(my_col, 'href="(http://.*blibli[^"]*)|href="http://([^"])', 'href="\1')
