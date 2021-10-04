@@ -6,6 +6,12 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import moment from "moment";
 import GAuth from "vue-google-oauth2";
+import VueSweetalert2 from "vue-sweetalert2";
+import globalMixin from "@/mixins/globalMixin.js";
+
+import "sweetalert2/dist/sweetalert2.min.css";
+
+Vue.use(VueSweetalert2);
 
 Vue.config.productionTip = false;
 
@@ -15,8 +21,6 @@ moment.locale("en", {
 	}
 });
 Vue.prototype.moment = moment;
-
-import globalMixin from "@/mixins/globalMixin.js";
 
 Vue.mixin(globalMixin);
 
