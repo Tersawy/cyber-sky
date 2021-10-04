@@ -15,7 +15,7 @@
 					<v-btn text color="white" to="/courses" large>الدورات التدريبية</v-btn>
 					<v-btn text color="white" to="/paths" large>المسارات التعليمية</v-btn>
 					<v-btn text color="white" large to="/blog">المدونة</v-btn>
-					<v-btn text color="white" large class="text-capitalize font-weight-medium"> خدمات Cyber </v-btn>
+					<v-btn text color="white" large class="text-capitalize font-weight-medium"> مختبرات افتراضية </v-btn>
 				</div>
 
 				<v-spacer v-if="$vuetify.breakpoint.mdAndUp"></v-spacer>
@@ -104,7 +104,7 @@
 						</v-list-item>
 						<v-list-item color="#333" link>
 							<v-list-item-title>
-								خدمات Cyber
+								مختبرات افتراضية
 							</v-list-item-title>
 						</v-list-item>
 						<v-list-item v-if="!$store.state.auth.isLogin">

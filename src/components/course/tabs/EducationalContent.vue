@@ -4,8 +4,17 @@
 			<v-card-title primary-title>
 				<v-icon class="v-alert__icon icon-redius" color="#0082C6">fa-book</v-icon>
 				<span>المحتوى التعليمي</span>
-				<v-btn v-if="pdfLink" target="_blank" :href="`https://323f496c228ba266d14fe967a7ddb488.cyber-sky.org/media/${pdfLink}`" link class="mx-2" color="red" text>
-					<v-icon>fa-file-pdf-o</v-icon>
+				<v-btn
+					v-if="pdfLink"
+					target="_blank"
+					:href="`https://323f496c228ba266d14fe967a7ddb488.cyber-sky.org/media/${pdfLink}`"
+					link
+					class="mx-2 white--text"
+					color="red"
+					small
+				>
+					<span class="ml-2">عرض</span>
+					<v-icon small>fa-file-pdf-o</v-icon>
 				</v-btn>
 				<v-spacer></v-spacer>
 				<span class="font-weight-light text-md-body-1"> ‏{{ data.length }} وحدات | {{ lessonsLength }} درساً </span>
