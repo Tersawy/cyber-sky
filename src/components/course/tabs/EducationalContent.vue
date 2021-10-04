@@ -55,7 +55,7 @@
 		<v-dialog v-model="pre" max-width="1000px" transition="dialog-transition">
 			<v-card>
 				<v-card-text class="pa-1">
-					<video v-if="currentVideo" :src="currentVideo" controls style="width: 100%"></video>
+					<video v-if="pre && currentVideo" :src="currentVideo" controls style="width: 100%"></video>
 				</v-card-text>
 			</v-card>
 		</v-dialog>

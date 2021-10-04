@@ -11,7 +11,7 @@
 					<v-dialog v-model="video" persistent max-width="800px" transition="dialog-transition">
 						<v-card>
 							<v-card-text class="mx-0 px-0">
-								<video width="100%" controls ref="video" :src="`${VIDEO_URL}${data.video}`" type="video/mp4">
+								<video v-if="video && data.video" width="100%" controls ref="video" :src="`${VIDEO_URL}${data.video}`" type="video/mp4">
 									Your browser does not support HTML video.
 								</video>
 							</v-card-text>
