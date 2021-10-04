@@ -6,11 +6,22 @@
 			<router-view></router-view>
 		</v-main>
 
+		<mydialog v-model="loginDailog" width="">
+			<form-login @submit="close"></form-login>
+		</mydialog>
+
+		<mydialog v-model="registerDailog" width="">
+			<form-resgiter @submit="close"></form-resgiter>
+		</mydialog>
+
 		<CustomFooter />
 	</v-app>
 </template>
 
 <script>
+	import mydialog from "@/components/Dialog.vue";
+	import formLogin from "@/components/forms/Login.vue";
+	import formResgiter from "@/components/forms/Register.vue";
 	const CustomNavbar = () => import("@component/layout/Navbar.vue");
 
 	// const CustomHeader = () => import("@component/layout/Header.vue");
@@ -21,11 +32,36 @@
 
 		components: {
 			CustomNavbar,
-			CustomFooter
+			CustomFooter,
+			mydialog,
+			formLogin,
+			formResgiter
 		},
 
-		data: () => ({
-			//
-		})
+		computed: {
+			registerDailog: {
+				get: function() {
+					return this.$store.state.registerDailog;
+				},
+				set: function(v) {
+					this.$store.commit("setRegisterDailog", v);
+				}
+			},
+			loginDailog: {
+				get: function() {
+					return this.$store.state.loginDailog;
+				},
+				set: function(v) {
+					this.$store.commit("setLoginDailog", v);
+				}
+			}
+		},
+
+		methods: {
+			close() {
+				this.loginDailog = false;
+				this.registerDailog = false;
+			}
+		}
 	};
 </script>

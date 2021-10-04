@@ -8,7 +8,9 @@ export default new Vuex.Store({
 	state: {
 		sections: [],
 		setting: {},
-		user_courses: []
+		user_courses: [],
+		registerDailog: false,
+		loginDailog: false
 	},
 	mutations: {
 		setSections(state, data) {
@@ -16,6 +18,12 @@ export default new Vuex.Store({
 		},
 		setSetting(state, data) {
 			state.setting = data;
+		},
+		setRegisterDailog(state, value) {
+			state.registerDailog = value;
+		},
+		setLoginDailog(state, value) {
+			state.loginDailog = value;
 		}
 	},
 	actions: {

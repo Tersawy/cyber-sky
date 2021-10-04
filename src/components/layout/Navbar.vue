@@ -21,11 +21,11 @@
 				<v-spacer v-if="$vuetify.breakpoint.mdAndUp"></v-spacer>
 
 				<template v-if="!$store.state.auth.isLogin && $vuetify.breakpoint.mdAndUp">
-					<v-btn @click="loginDailog = true" color="white" large class="ml-3" style="color:#005FAB">
+					<v-btn @click="$store.commit(`setLoginDailog`, true)" color="white" large class="ml-3" style="color:#005FAB">
 						تسجيل دخول
 					</v-btn>
 
-					<v-btn @click="registerDailog = true" outlined color="white" large>
+					<v-btn @click="$store.commit(`setRegisterDailog`, true)" outlined color="white" large>
 						تسجيل الإشتراك
 					</v-btn>
 				</template>
@@ -108,56 +108,34 @@
 							</v-list-item-title>
 						</v-list-item>
 						<v-list-item v-if="!$store.state.auth.isLogin">
-							<v-btn @click="loginDailog = true" color="white" large class="ml-3" style="color:#005FAB">
+							<v-btn @click="$store.commit(`setLoginDailog`, true)" color="white" large class="ml-3" style="color:#005FAB">
 								تسجيل دخول
 							</v-btn>
 
-							<v-btn @click="registerDailog = true" outlined color="white" large>
+							<v-btn @click="$store.commit(`setRegisterDailog`, true)" outlined color="white" large>
 								تسجيل الإشتراك
 							</v-btn>
 						</v-list-item>
 					</v-list>
 				</v-col>
 			</v-layout>
-
-			<mydialog v-model="loginDailog" width="">
-				<form-login @submit="close"></form-login>
-			</mydialog>
-
-			<mydialog v-model="registerDailog" width="">
-				<form-resgiter @submit="close"></form-resgiter>
-			</mydialog>
 		</v-container>
 	</v-app-bar>
 </template>
 
 <script>
-	import mydialog from "../Dialog.vue";
-	import formLogin from "../forms/Login.vue";
-	import formResgiter from "../forms/Register.vue";
 	export default {
 		name: "CustomNavbar",
-		components: {
-			mydialog,
-			formLogin,
-			formResgiter
-		},
+		components: {},
 		data() {
 			return {
-				itemNav: false,
-				loginDailog: false,
-				registerDailog: false
+				itemNav: false
 			};
 		},
 		methods: {
 			logout() {
-				console.log("logout");
 				this.$store.dispatch("auth/logout");
 				this.$router.push("/");
-			},
-			close() {
-				this.loginDailog = false;
-				this.registerDailog = false;
 			}
 		}
 	};
