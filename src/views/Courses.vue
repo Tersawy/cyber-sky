@@ -4,7 +4,7 @@
 			<v-layout row align-end style="height: 20rem;">
 				<v-col cols="12" md="6">
 					<h1 style="font-size: 40px;font-weight: lighter;">
-						الكورسات التدريبية
+						الدورات التدريبية
 					</h1>
 				</v-col>
 				<v-col cols="12" md="6" class="mb-n6">
