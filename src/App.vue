@@ -1,32 +1,31 @@
 <template>
-  <v-app style='background-color:#fff'>
-    <CustomNavbar> </CustomNavbar>
+	<v-app style="background-color:#fff">
+		<CustomNavbar> </CustomNavbar>
 
-    <v-main >
-      <router-view></router-view>
-    </v-main>
+		<v-main>
+			<router-view></router-view>
+		</v-main>
 
-    <CustomFooter  />
-  </v-app>
+		<CustomFooter />
+	</v-app>
 </template>
 
 <script>
-const CustomNavbar = () => import("@component/layout/Navbar.vue");
+	const CustomNavbar = () => import("@component/layout/Navbar.vue");
 
-// const CustomHeader = () => import("@component/layout/Header.vue");
-const CustomFooter = () => import("@component/layout/Footer.vue");
+	// const CustomHeader = () => import("@component/layout/Header.vue");
+	const CustomFooter = () => import("@component/layout/Footer.vue");
 
+	export default {
+		name: "App",
 
-export default {
-  name: 'App',
+		components: {
+			CustomNavbar,
+			CustomFooter
+		},
 
-  components: {
-      CustomNavbar,
-      CustomFooter
-  },
-
-  data: () => ({
-    //
-  })
-}
+		data: () => ({
+			//
+		})
+	};
 </script>

@@ -6,6 +6,6 @@ Vue.use(Vuetify);
 export default new Vuetify({
 	rtl: true,
 	icons: {
-		iconfont: "mdiSvg", // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
-	},
+		iconfont: "mdiSvg" // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4' || 'faSvg'
+	}
 });

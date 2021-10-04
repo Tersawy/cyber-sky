@@ -20,17 +20,13 @@
 							</v-card-title>
 							<v-card-actions>
 								<v-spacer></v-spacer>
-								<v-btn dark color="red text--white" elevation="1" @click="video = false">
-									اغلاق
-								</v-btn>
+								<v-btn dark color="red text--white" elevation="1" @click="video = false"> اغلاق </v-btn>
 							</v-card-actions>
 						</v-card>
 					</v-dialog>
 					<v-row class="justify-center align-center " style="height:100%">
 						<v-col cols="4">
-							<v-icon size="80" color="white" :style="{ opacity: hover ? 1 : 0.5 }">
-								fa-play
-							</v-icon>
+							<v-icon size="80" color="white" :style="{ opacity: hover ? 1 : 0.5 }"> fa-play </v-icon>
 						</v-col>
 					</v-row>
 				</v-img>
