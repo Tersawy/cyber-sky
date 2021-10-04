@@ -59,7 +59,7 @@
 		<v-card-actions class="mx-0">
 			<v-row justify="center">
 				<v-col cols="12">
-					<v-btn v-if="!isBuy" large dark width="55%" color="#0082C6" elevation="0" class="ml-1" @click="$router.push({ name: 'Payment', params: { id: data.id } })">
+					<v-btn v-if="!isBuy" large dark width="55%" color="#0082C6" elevation="0" class="ml-1" @click="handleBuy">
 						إشتري
 					</v-btn>
 					<v-btn
@@ -91,6 +91,16 @@
 		computed: {
 			isBuy() {
 				return this.$store.state.user_courses.filter(it => it.course_detals.id == this.data.id)[0];
+			}
+		},
+
+		methods: {
+			handleBuy() {
+				if (!this.isLogin) {
+					return this.$store.commit("setLoginDailog", true);
+				}
+
+				this.$router.push({ name: "Payment", params: { id: data.id } });
 			}
 		}
 	};
