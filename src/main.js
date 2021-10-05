@@ -8,6 +8,7 @@ import moment from "moment";
 import GAuth from "vue-google-oauth2";
 import VueSweetalert2 from "vue-sweetalert2";
 import globalMixin from "@/mixins/globalMixin.js";
+import "@/assets/scss/main.scss";
 
 import "sweetalert2/dist/sweetalert2.min.css";
 
