@@ -15,7 +15,7 @@
 					<v-btn text color="white" to="/courses" large>الدورات التدريبية</v-btn>
 					<v-btn text color="white" to="/paths" large>المسارات التعليمية</v-btn>
 					<v-btn text color="white" large to="/blog">المدونة</v-btn>
-					<v-btn text color="white" large class="text-capitalize font-weight-medium"> مختبرات افتراضية </v-btn>
+					<v-btn text color="white" large class="text-capitalize font-weight-medium" @click="showInDevDailog"> مختبرات افتراضية </v-btn>
 				</div>
 
 				<v-spacer v-if="$vuetify.breakpoint.mdAndUp"></v-spacer>
@@ -102,7 +102,7 @@
 								المدونة
 							</v-list-item-title>
 						</v-list-item>
-						<v-list-item color="#333" link>
+						<v-list-item color="#333" link @click="showInDevDailog">
 							<v-list-item-title>
 								مختبرات افتراضية
 							</v-list-item-title>
@@ -136,6 +136,16 @@
 			logout() {
 				this.$store.dispatch("auth/logout");
 				this.$router.push("/");
+			},
+			showInDevDailog() {
+				this.$swal.fire({
+					icon: "warning",
+					title: "هذه الميزة قيد التطوير",
+					confirmButtonText: "اغلاق",
+					confirmButtonColor: "#0082c6"
+					// text: "Something went wrong!"
+					// footer: '<a href="">Why do I have this issue?</a>'
+				});
 			}
 		}
 	};
