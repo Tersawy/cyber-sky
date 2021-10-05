@@ -100,7 +100,7 @@
 					return this.$store.commit("setLoginDailog", true);
 				}
 
-				this.$router.push({ name: "Payment", params: { id: data.id } });
+				this.$router.push({ name: "Payment", params: { id: this.data.id } });
 			}
 		}
 	};
