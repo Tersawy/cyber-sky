@@ -45,7 +45,7 @@
 			</h3>
 		</v-card-title>
 		<v-card-actions>
-			<v-btn v-if="!isBuy" large dark width="65%" color="#0082C6" class="ml-1 elevation-0" @click="$router.push({ name: 'Payment', params: { id: data.id } })">
+			<v-btn v-if="!isBuy" large dark width="65%" color="#0082C6" class="ml-1 elevation-0" @click="handleBuy">
 				<template v-if="data.userHaveCoures">إبدأ الآن</template>
 				<template v-else>إشتري </template>
 			</v-btn>
@@ -82,6 +82,14 @@
 			}
 		},
 		methods: {
+			handleBuy() {
+				if (!this.isLogin) {
+					return this.$store.commit("setLoginDailog", true);
+				}
+
+				this.$router.push({ name: "Payment", params: { id: this.data.id } });
+			},
+
 			videoShow() {
 				this.video = true;
 				// this.$refs.video.reload()
