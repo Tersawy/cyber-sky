@@ -26,7 +26,7 @@
 					</v-col>
 					<v-col cols="12">
 						<v-row>
-							<v-col cols="12" md="6" class="mt-md-2" v-for="path in data" :key="path.id">
+							<v-col cols="12" md="6" xl="4" class="mt-md-2" v-for="path in data" :key="path.id">
 								<v-card rounded-lg hover :to="`/courses?path=${path.slug}`">
 									<v-card-title>
 										<v-icon class="font-size: 36px; color: rgb(216, 50, 50); caret-color: rgb(216, 50, 50);">
