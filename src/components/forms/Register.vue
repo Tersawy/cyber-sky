@@ -11,7 +11,15 @@
 				<v-text-field name="email" label="البريد الاكتروني" id="email" filled outlined :error-messages="errors.email" :hide-details="!errors.email"></v-text-field>
 			</v-col>
 			<v-col cols="12">
-				<v-text-field name="password" label="كلمة السر" filled outlined :hide-details="!errors.password" :error-messages="errors.password"></v-text-field>
+				<v-text-field
+					name="password"
+					type="password"
+					label="كلمة السر"
+					filled
+					outlined
+					:hide-details="!errors.password"
+					:error-messages="errors.password"
+				></v-text-field>
 			</v-col>
 
 			<v-col cols="12">
@@ -55,7 +63,6 @@
 </template>
 
 <script>
-	import axios from "axios";
 	import { mapState } from "vuex";
 	import VueRecaptcha from "vue-recaptcha";
 	const PrivacyCard = () => import("@component/cards/Privacy.vue");
@@ -269,16 +276,26 @@
 			};
 		},
 		methods: {
-			submit() {
+			async submit() {
 				let fd = new FormData(this.$refs.form.$el);
 
 				this.isloading = true;
-				this.$store
-					.dispatch("auth/register", fd)
-					.then(() => {
-						this.$emit("submit");
-					})
-					.finally(() => (this.isloading = false));
+
+				try {
+					await this.$store.dispatch("auth/register", fd);
+
+					await this.$store.dispatch("auth/login", fd);
+
+					await this.$store.dispatch("auth/user");
+
+					this.$emit("submit");
+
+					this.$router.go(0);
+				} catch (err) {
+					//
+				} finally {
+					this.isloading = false;
+				}
 			},
 			validate(data) {
 				this.$refs.recaptcha.reset();
@@ -287,10 +304,7 @@
 		},
 		computed: mapState("auth", {
 			errors: state => state.errors
-		}),
-		created() {
-			axios.get("https://restcountries.eu/rest/v2/all/").then(resp => (this.countries = resp.data));
-		}
+		})
 	};
 </script>
 
