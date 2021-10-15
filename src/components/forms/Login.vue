@@ -70,7 +70,7 @@
 					.then(() => {
 						this.$store.dispatch("auth/user");
 						this.$emit("submit");
-						this.$router.go(0);
+						location.reload(true);
 					})
 					.finally(() => (this.isloading = false));
 			},
