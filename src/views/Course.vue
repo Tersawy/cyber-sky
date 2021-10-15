@@ -6,7 +6,7 @@
 					<v-breadcrumbs :items="items" divider=">>"> </v-breadcrumbs>
 
 					<h1 style="font-size: 30px">{{ current.title }}</h1>
-					<p class="grey--text " style="font-size: 20px">{{ current.description }}</p>
+					<p class="grey--text col col-12 col-md-8" style="font-size: 20px">{{ current.description }}</p>
 				</v-col>
 			</v-layout>
 
