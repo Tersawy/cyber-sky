@@ -1,160 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="shrotcut icon" type="image/png" href="<%= BASE_URL %>footer.png">
-    <title>Cyber Sky</title>
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"> -->
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.x/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://www.xvast.com/XvastPlayer/css/video-js.css" />
-    <link rel="stylesheet" type="text/css" href="https://www.xvast.com/XvastPlayer/css/XvastPlay.css" />
-    
-    <style>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<link rel="shrotcut icon" type="image/png" href="<%= BASE_URL %>footer.png" />
+		<title>Cyber Sky</title>
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css"> -->
+		<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.x/css/font-awesome.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="https://www.xvast.com/XvastPlayer/css/video-js.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.xvast.com/XvastPlayer/css/XvastPlay.css" />
 
+		<style>
+			@font-face {
+				font-family: ArbFONTS;
+				src: url(./Fonts/ArbFONTS-GE-SS-Two-Light.otf) format("opentype");
+				font-weight: lighter;
+				unicode-range: U+0-2f, U+40-10FFFF;
+			}
+			@font-face {
+				font-family: ArbFONTS;
+				src: url(./Fonts/ArbFONTS-GE_SS_Two_Bold_0.otf) format("opentype");
+				font-weight: lighter;
+				unicode-range: U+0-2f, U+40-10FFFF;
+			}
 
-      @font-face {
-          font-family: ArbFONTS;
-          src: url(./Fonts/ArbFONTS-GE-SS-Two-Light.otf) format('opentype');
-          font-weight: lighter;
-          unicode-range: U+0-2f, U+40-10FFFF;
-      }
-      @font-face {
-          font-family: ArbFONTS;
-          src: url(./Fonts/ArbFONTS-GE_SS_Two_Bold_0.otf) format('opentype');
-          font-weight: lighter;
-          unicode-range: U+0-2f, U+40-10FFFF;
-      }
+			@font-face {
+				font-family: ArbFONTS;
+				src: url(./Fonts/ArbFONTS-GE_SS_TWO_MEDIUM_0.otf) format("opentype");
+				font-weight: normal;
+				unicode-range: U+0-2f, U+40-10FFFF;
+			}
 
-      @font-face {
-          font-family: ArbFONTS;
-          src: url(./Fonts/ArbFONTS-GE_SS_TWO_MEDIUM_0.otf) format('opentype');
-          font-weight: normal;
-          unicode-range: U+0-2f, U+40-10FFFF;
-      }
+			@font-face {
+				font-family: Gotham;
+				font-weight: lighter;
+				unicode-range: U+0-2f, U+40-10FFFF;
+				src: url(./Fonts/Gotham-Light.otf);
+			}
 
-      @font-face{
-        font-family: Gotham;
-        font-weight: lighter;
-        unicode-range: U+0-2f, U+40-10FFFF;
-        src: url(./Fonts/Gotham-Light.otf);
-      }
+			@font-face {
+				font-family: Gotham;
+				font-weight: lighter;
+				unicode-range: U+0-2f, U+40-10FFFF;
+				src: url(./Fonts/Gotham-Black.otf);
+			}
 
-      @font-face{
-        font-family: Gotham;
-        font-weight: lighter;
-        unicode-range: U+0-2f, U+40-10FFFF;
-        src: url(./Fonts/Gotham-Black.otf);
-      }
+			@font-face {
+				font-family: OpenSans;
+				src: url(./Fonts/OpenSans-Bold_1.ttf);
+				src: url(./Fonts/OpenSans-ExtraBold_1.ttf);
+				font-weight: bold;
+				unicode-range: U+0-2f, U+40-10FFFF;
+			}
 
-      @font-face {
-          font-family: OpenSans;
-          src: url(./Fonts/OpenSans-Bold_1.ttf);
-          src: url(./Fonts/OpenSans-ExtraBold_1.ttf);
-          font-weight: bold;
-          unicode-range: U+0-2f, U+40-10FFFF;
-      }
-      
+			@font-face {
+				font-family: OpenSans;
+				src: url(./Fonts/OpenSans-Light_1.ttf);
+				src: url(./Fonts/OpenSans-LightItalic_1.ttf);
 
-      @font-face {
-          font-family: OpenSans;
-          src: url(./Fonts/OpenSans-Light_1.ttf);
-          src: url(./Fonts/OpenSans-LightItalic_1.ttf);
+				font-weight: lighter;
+				unicode-range: U+0-2f, U+40-10FFFF;
+			}
 
-          font-weight: lighter;
-          unicode-range: U+0-2f, U+40-10FFFF;
-      }
+			@font-face {
+				font-family: OpenSans;
+				src: url(./Fonts/OpenSans-Regular_1.ttf);
+				font-weight: normal;
+				unicode-range: U+0-2f, U+40-10FFFF;
+			}
 
+			@font-face {
+				font-family: ArbFONTS;
+				src: local("Arial");
+				unicode-range: U+0-2f, U+40-10FFFF;
+			}
 
+			* {
+				font-family: ArbFONTS, OpenSans, Gotham;
+			}
+		</style>
 
-      @font-face {
-          font-family: OpenSans;
-          src: url(./Fonts/OpenSans-Regular_1.ttf);
-          font-weight: normal;
-          unicode-range: U+0-2f, U+40-10FFFF;
-      }
+		<style>
+			@font-face {
+				font-family: ArbFONTS;
+				src: url(./Fonts/ArbFONTS-GE_SS_TWO_MEDIUM_0.otf) format("truetype");
+				font-weight: normal;
+				font-style: normal;
+			}
 
+			@font-face {
+				font-family: ArbFONTS;
+				src: url(./Fonts/ArbFONTS-GE-SS-Two-Light.otf);
+				font-weight: lighter;
+			}
 
-      @font-face {
-        font-family: ArbFONTS;
-        src: local("Arial");
-        unicode-range: U+0-2f, U+40-10FFFF;
-      }
+			@font-face {
+				font-family: ArbFONTS;
+				src: url(./Fonts/ArbFONTS-GE_SS_Two_Bold_0.otf) format("truetype");
+				font-weight: bold;
+				font-style: normal;
+				unicode-range: U+30f, U+35FFFF;
+			}
 
-      *{
-        font-family: ArbFONTS, OpenSans, Gotham;
-      }
-    </style>
+			@font-face {
+				font-family: Gotham;
+				src: url(/Fonts/Gotham-Light.otf);
+			}
 
-<style>
-  @font-face {
-    font-family: ArbFONTS;
-    src: url(./Fonts/ArbFONTS-GE_SS_TWO_MEDIUM_0.otf) format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
+			@font-face {
+				font-family: OpenSans;
+				src: url(./Fonts/OpenSans-Light_1.ttf) format("truetype");
+				font-weight: lighter;
+				font-style: normal;
+			}
 
-  @font-face {
-    font-family: ArbFONTS;
-    src: url(./Fonts/ArbFONTS-GE-SS-Two-Light.otf);
-    font-weight: lighter;
-  }
+			@font-face {
+				font-family: OpenSans;
+				src: url(./Fonts/OpenSans-Bold_1.ttf) format("truetype");
+				font-weight: bold;
+				font-style: normal;
+			}
 
-  @font-face {
-    font-family: ArbFONTS;
-    src: url(./Fonts/ArbFONTS-GE_SS_Two_Bold_0.otf) format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    unicode-range: U+30f, U+35FFFF;
-  }
+			@font-face {
+				font-family: ArbFONTS;
+				src: local("Arial");
+				unicode-range: U+0030-0039;
+			}
 
+			* {
+				font-family: "ArbFONTS";
+			}
+		</style>
+	</head>
+	<body>
+		<noscript>
+			<strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+		</noscript>
+		<div id="app"></div>
+		<!-- built files will be auto injected -->
 
+		<link rel="stylesheet" type="text/css" href="https://www.xvast.com/XvastPlayer/css/video-js.css" />
+		<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script>
 
-  @font-face {
-    font-family: Gotham;
-    src: url(/Fonts/Gotham-Light.otf);
-  }
-
-  @font-face {
-    font-family: OpenSans;
-    src: url(./Fonts/OpenSans-Light_1.ttf) format('truetype');
-    font-weight: lighter;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: OpenSans;
-    src: url(./Fonts/OpenSans-Bold_1.ttf)format('truetype');
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: ArbFONTS;
-    src: local("Arial");
-    unicode-range: U+0030-0039;
-  }
-
-  * {
-
-    font-family: 'ArbFONTS';
-  }
-</style>
-  </head>
-  <body >
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app" ></div>
-    <!-- built files will be auto injected -->
-
-    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
-    <link rel="stylesheet" type="text/css" href="https://www.xvast.com/XvastPlayer/css/video-js.css" />
-
-  </script>
-
-    <!-- <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script> -->
-    <link rel="stylesheet" type="text/css" href="https://www.xvast.com/XvastPlayer/css/XvastPlay.css" />
-    <script src="https://www.xvast.com/XvastPlayer/js/video.js" type="text/javascript" charset="utf-8"></script>
-  </body>
+		<!-- <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script> -->
+		<script src="https://www.xvast.com/XvastPlayer/js/video.js" type="text/javascript" charset="utf-8"></script>
+	</body>
 </html>
