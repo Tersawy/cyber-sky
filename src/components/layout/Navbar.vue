@@ -64,7 +64,7 @@
 							</v-list-item>
 							<v-list-item link>
 								<v-list-item-content>
-									<v-list-item-title>
+									<v-list-item-title @click="logout">
 										تسجيل الخروج
 										<v-icon style="transform: rotate(180deg);">fa-sign-out</v-icon>
 									</v-list-item-title>
@@ -133,8 +133,9 @@
 			};
 		},
 		methods: {
-			logout() {
-				this.$store.dispatch("auth/logout");
+			async logout() {
+				await this.$store.dispatch("auth/logout");
+				location.reload(true);
 				this.$router.push("/");
 			},
 			showInDevDailog() {
