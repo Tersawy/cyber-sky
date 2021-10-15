@@ -13,7 +13,7 @@
 						التدوينات
 					</h1>
 				</v-col>
-				<v-col md="6" cols="12" v-for="post in posts.results" :key="post.id">
+				<v-col md="6" lg="4" xl="3" cols="12" v-for="post in posts.results" :key="post.id">
 					<PostCard class="mt-7" :data="post"> </PostCard>
 				</v-col>
 			</v-layout>
