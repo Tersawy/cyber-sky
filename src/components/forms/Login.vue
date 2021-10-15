@@ -70,6 +70,7 @@
 					.then(() => {
 						this.$store.dispatch("auth/user");
 						this.$emit("submit");
+						this.$router.go(0);
 					})
 					.finally(() => (this.isloading = false));
 			},
