@@ -27,10 +27,10 @@
 					<h1 style="font-size: 42px" class="pa-2">دوراتي التدريبية</h1>
 				</v-col>
 				<v-col cols="12">
-					<h3 v-if="!$store.state.user_courses.length" class="text-center py-12 mb-12 grey--text text--darken-2">
+					<h3 v-if="!myCourses.length" class="text-center py-12 mb-12 grey--text text--darken-2">
 						لم تقم بشراء اي دورة تدريبية
 					</h3>
-					<template v-for="(course, i) in $store.state.user_courses">
+					<template v-for="(course, i) in myCourses">
 						<UserCourseCard :data="course" :key="i" />
 					</template>
 				</v-col>
@@ -68,7 +68,10 @@
 		computed: {
 			...mapState("model", {
 				isloading: s => s.isloading
-			})
+			}),
+			myCourses() {
+				return this.$store.getters.myCourses;
+			}
 		},
 		methods: {
 			getAll() {

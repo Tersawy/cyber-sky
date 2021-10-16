@@ -90,7 +90,10 @@
 		},
 		computed: {
 			isBuy() {
-				return this.$store.state.user_courses.filter(it => it.course_detals.id == this.data.id)[0];
+				return this.myCourses.filter(it => it.course_detals.id == this.data.id)[0];
+			},
+			myCourses() {
+				return this.$store.getters.myCourses;
 			}
 		},
 
