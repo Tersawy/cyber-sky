@@ -14,7 +14,7 @@
 					</v-row>
 				</v-col>
 			</v-layout>
-			<v-layout row warp class="my-12">
+			<v-layout row wrap class="my-12">
 				<template v-if="!isloading">
 					<v-col md="6" lg="4" xl="3" cols="12" v-for="(post, i) in posts.results" :key="i">
 						<PostCard :data="post"></PostCard>
