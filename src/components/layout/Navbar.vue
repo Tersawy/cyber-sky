@@ -83,7 +83,7 @@
 				</template>
 			</v-layout>
 
-			<v-layout row wrap class="itemNav" v-if="$vuetify.breakpoint.mdAndDown & itemNav">
+			<v-layout row wrap class="itemNav" v-if="$vuetify.breakpoint.mdAndDown & itemNav" v-click-outside="onClickOutside">
 				<v-col cols="12">
 					<v-list color="rgb(11 114 169 / 90%)" dark class="pa-0">
 						<v-list-item color="#333" link to="/courses">
@@ -133,6 +133,9 @@
 			};
 		},
 		methods: {
+			onClickOutside() {
+				this.itemNav = false;
+			},
 			async logout() {
 				await this.$store.dispatch("auth/logout");
 				location.reload(true);
