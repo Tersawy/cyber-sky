@@ -24,7 +24,7 @@
 
 			<v-layout row class="my-12" style="flex-wrap: wrap !important">
 				<template v-if="!isloading">
-					<v-col md="4" lg="3" cols="12" v-for="course in data.results" :key="course.id">
+					<v-col sm="6" md="4" lg="3" cols="12" v-for="course in data.results" :key="course.id">
 						<CoursesCard :data="course"></CoursesCard>
 					</v-col>
 				</template>
