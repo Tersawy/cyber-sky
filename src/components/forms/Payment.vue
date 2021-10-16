@@ -102,22 +102,6 @@
 		</v-tabs-items>
 
 		<v-row class="mt-12">
-			<template v-if="!data.slug">
-				<v-col cols="10" md="4">
-					<v-text-field
-						v-model="coupon"
-						:error-messages="errors.message"
-						:color="coupon_detals.id ? `green` : ''"
-						outlined
-						dense
-						hide-details
-						label="كود الخصم"
-					></v-text-field>
-				</v-col>
-				<v-col cols="2">
-					<v-btn outlined x-large :loading="isloading" height="100%" @click="checkCoupon"> تحقق </v-btn>
-				</v-col>
-			</template>
 			<v-list-item class="px-5 mx-2 " dense>
 				<v-list-item-content>
 					<v-list-item-title> السعر الإجمالي </v-list-item-title>
@@ -138,7 +122,7 @@
 				<v-checkbox dense v-model="accept" value="value" hide-details>
 					<template v-slot:label>
 						<v-btn text color="blue" to="/service" @click.stop>
-							هل توافق على شرروط الخدمة
+							هل توافق على شروط الخدمة؟
 						</v-btn>
 					</template>
 				</v-checkbox>
@@ -176,6 +160,11 @@
 		watch: {
 			data(data) {
 				this.price = data.discount ? data.discount : data.price;
+			},
+			tabs(v, oldValue) {
+				if (!v) {
+					this.$nextTick(() => (this.tabs = oldValue));
+				}
 			}
 		},
 		computed: {
@@ -203,13 +192,18 @@
 						item: JSON.stringify(Object.fromEntries(fd)),
 						method: "create"
 					})
-					.then(data => alert(" يرجا التحقق من الاميل"))
+					.then(() => {
+						this.$swal.fire({
+							icon: "warning",
+							title: "يرجى التحقق من البريد الالكتروني",
+							confirmButtonText: "اغلاق",
+							confirmButtonColor: "#0082c6"
+						});
+					})
 					.catch(err => console.log(err));
 			},
 			couser(fd) {
-				fd.set("price", this.price);
-				if (this.coupon_detals.id) fd.set("coupon", this.coupon_detals.code);
-				fd.set("type", this.tabs);
+				fd.set("type", "cc");
 
 				this.$store
 					.dispatch("model/sendReq", {
@@ -224,11 +218,33 @@
 							this.$refs.checkoutRef.redirectToCheckout();
 							return;
 						}
-						alert(" يرجا التحقق من الاميل");
+						this.$swal
+							.fire({
+								icon: "warning",
+								title: "يرجى التحقق من البريد الالكتروني",
+								confirmButtonText: "رجوع",
+								confirmButtonColor: "#0082c6"
+							})
+							.then(result => {
+								if (result.isConfirmed) {
+									this.$router.push("/courses");
+								}
+							});
 					})
 					.catch(err => {
 						if (err.response.data.error == "HAVE_COURSE") {
-							alert("لقد قمت بشراء الكورس يرجا التحقق من الاميل ");
+							this.$swal
+								.fire({
+									icon: "warning",
+									title: "لقد قمت بشراء الكورس يرجى التحقق من البريد الالكتروني",
+									confirmButtonText: "رجوع",
+									confirmButtonColor: "#0082c6"
+								})
+								.then(result => {
+									if (result.isConfirmed) {
+										this.$router.push("/courses");
+									}
+								});
 						}
 					});
 			},
