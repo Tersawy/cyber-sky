@@ -3,7 +3,10 @@
 	"editor.formatOnPaste": false,
 	"editor.formatOnSave": true,
 	"editor.formatOnType": false,
+	"editor.lineHeight": 29,
 	"editor.autoClosingBrackets": "always",
+	"editor.minimap.enabled": false,
+	"files.autoSave": "onWindowChange",
 	"[javascript]": {
 		"editor.autoClosingBrackets": "always"
 	},
@@ -14,10 +17,8 @@
 	"eslint.validate": ["javascript", "javascriptreact", "vue"],
 	"[vue]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
-		"editor.formatOnSave": true
+		"editor.formatOnSave": true,
+		"editor.tabSize": 2
 	},
-	"editor.tabSize": 2,
-	"[php]": {
-		"editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
-	}
+	"editor.tabSize": 2
 }
