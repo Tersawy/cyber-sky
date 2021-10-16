@@ -114,7 +114,12 @@
 						item: JSON.stringify(Object.fromEntries(fd))
 					})
 					.then(() => {
-						alert("  تم الحجز بنجاح يرجا انتظار تاكيد الموعد من قبل الاستاذ تاكد من الاميل الخاص بيك");
+						this.$swal.fire({
+							icon: "warning",
+							title: "تم الحجز بنجاح يرجى انتظار تاكيد الموعد من قبل الاستاذ تاكد من البريد الالكتروني الخاص بك",
+							confirmButtonText: "اغلاق",
+							confirmButtonColor: "#0082c6"
+						});
 						this.$refs.form.reset();
 					})
 					.finally(() => {
