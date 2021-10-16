@@ -12,6 +12,11 @@ export default new Vuex.Store({
 		registerDailog: false,
 		loginDailog: false
 	},
+	getters: {
+		myCourses: state => {
+			return state.user_courses.filter(c => !!c.status);
+		}
+	},
 	mutations: {
 		setSections(state, data) {
 			state.sections = data;
