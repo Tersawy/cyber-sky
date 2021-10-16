@@ -68,7 +68,6 @@ router.beforeEach((to, from, next) => {
 					})
 					.catch(() => {
 						store.dispatch("auth/logout");
-						alert("Logout Tokne Expera");
 						if (to.meta.auth || from.meta.auth) {
 							next("/");
 						}
@@ -77,7 +76,6 @@ router.beforeEach((to, from, next) => {
 		} else {
 			store.dispatch("auth/logout");
 			if (to.meta.auth) {
-				alert("Need Login");
 				next({ name: from.name });
 			}
 		}
