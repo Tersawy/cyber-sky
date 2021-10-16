@@ -11,6 +11,9 @@ import "@/assets/scss/main.scss";
 
 import "sweetalert2/dist/sweetalert2.min.css";
 
+import "vue-slick-carousel/dist/vue-slick-carousel.css";
+import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+
 Vue.use(VueSweetalert2);
 
 Vue.config.productionTip = false;
