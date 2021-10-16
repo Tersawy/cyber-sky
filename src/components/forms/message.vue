@@ -63,7 +63,12 @@
 						item: JSON.stringify(Object.fromEntries(fd))
 					})
 					.then(({ data }) => {
-						alert("تم ارسال الرسالة");
+						this.$swal.fire({
+							icon: "success",
+							title: "تم ارسال الرسالة بنجاح",
+							confirmButtonText: "اغلاق",
+							confirmButtonColor: "#0082c6"
+						});
 						this.$emit("submit", data);
 						this.$refs.form.reset();
 					})
