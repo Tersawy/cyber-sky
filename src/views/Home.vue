@@ -44,8 +44,8 @@
 		</v-img>
 
 		<v-layout row wrap>
-			<v-col cols="12" class="text-center ">
-				<h1 style="font-size: 48px" class="mt-md-n12 mt-1">
+			<v-col cols="12" class="text-center mt-sm-n16 mt-md-16 mt-xl-n16">
+				<h1 style="font-size: 48px" class="mt-1">
 					الدورات التدريبية المميزة
 				</h1>
 			</v-col>
