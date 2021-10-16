@@ -28,11 +28,9 @@
 					.dispatch("auth/veritfy", token)
 					.then(() => {})
 					.catch(() => {
-						alert("Token invalid");
 						this.$router.push("/");
 					});
 			} else {
-				alert("Token invalid");
 				this.$router.push("/");
 			}
 		}
