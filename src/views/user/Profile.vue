@@ -66,7 +66,14 @@
 				this.isloading = true;
 				this.$store
 					.dispatch("auth/update", JSON.stringify(this.user))
-					.then(() => alert("Successfuly Update"))
+					.then(() => {
+						this.$swal.fire({
+							icon: "success",
+							title: "تم تحديث الملف الشخصي بنجاح",
+							confirmButtonText: "اغلاق",
+							confirmButtonColor: "#0082c6"
+						});
+					})
 					.finally(() => (this.isloading = false));
 			}
 		}
