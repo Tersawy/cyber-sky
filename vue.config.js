@@ -3,7 +3,7 @@ const path = require("path");
 module.exports = {
 	transpileDependencies: ["vuetify"],
 	lintOnSave: false,
-	outputDir: path.resolve(path.join(__dirname, "build", "dist")),
+	outputDir: path.resolve(path.join(__dirname, "build")),
 	productionSourceMap: false,
 	css: {
 		extract: { ignoreOrder: true }
