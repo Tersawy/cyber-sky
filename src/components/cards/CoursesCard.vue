@@ -33,12 +33,17 @@
 				</v-col>
 				<v-col cols="12">
 					<h3 class="float-left mt-4 text-h6" style="color:#D83232">
-						<span class="text-h6" :class="{ 'text-decoration-line-through red--text text--lighten-3': data.discount }">{{ data.price }}</span>
-						<span v-if="data.discount">
-							<span class="text-h6" v-if="Number(data.discount) != 0"> {{ data.discount }} </span>
-							<span class="text-h6" v-else> Free </span>
-						</span>
-						<sup>$</sup>
+						<template v-if="data.price">
+							<span class="text-h6" :class="{ 'text-decoration-line-through red--text text--lighten-3': data.discount }">{{ data.price }}</span>
+							<span v-if="data.discount">
+								<span class="text-h6" v-if="Number(data.discount) != 0"> {{ data.discount }} </span>
+								<span class="text-h6" v-else> Free </span>
+							</span>
+							<sup>$</sup>
+						</template>
+						<template v-else>
+							<span class="text-h6 red--text font-italic">Free</span>
+						</template>
 					</h3>
 					<v-rating
 						half-icon="fa-star-half"
