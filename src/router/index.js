@@ -24,9 +24,9 @@ const routes = [
 		}
 	},
 	{
-		path: "/veritfy",
-		name: "Veritfy",
-		component: () => import("../views/veritfy.vue")
+		path: "/verify",
+		name: "Verify",
+		component: () => import("../views/Verify.vue")
 	},
 	{
 		path: "/success/:sessionId",

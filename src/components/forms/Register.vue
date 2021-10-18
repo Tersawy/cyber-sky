@@ -284,13 +284,14 @@
 				try {
 					await this.$store.dispatch("auth/register", fd);
 
-					await this.$store.dispatch("auth/login", fd);
+					this.$store.commit("setRegisterDailog", false);
 
-					await this.$store.dispatch("auth/user");
-
-					this.$emit("submit");
-
-					this.$router.go(0);
+					return this.$swal.fire({
+						icon: "success",
+						title: "تم ارسال رابط التفعيل على البريد الالكتروني الخاص بك برجاء التحقق منه لتفعيل حسابك",
+						confirmButtonText: "اغلاق",
+						confirmButtonColor: "#0082c6"
+					});
 				} catch (err) {
 					//
 				} finally {

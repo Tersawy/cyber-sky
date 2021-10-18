@@ -23,7 +23,7 @@ export default {
 		}
 	},
 	actions: {
-		veritfy({ commit }, token) {
+		verify({ commit }, token) {
 			return axios.get(`verify/?token=${token}`);
 		},
 		logout({ commit, state }) {

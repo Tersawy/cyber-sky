@@ -93,6 +93,23 @@
 			]
 		}),
 
+		mounted() {
+			if (this.$route.params.verified && !this.isLogin) {
+				this.$swal
+					.fire({
+						icon: "success",
+						title: "تم تفعيل حسابك بنجاح",
+						confirmButtonText: "تسجيل الدخول",
+						confirmButtonColor: "#0082c6"
+					})
+					.then(result => {
+						if (result.isConfirmed) {
+							this.$store.commit("setLoginDailog", true);
+						}
+					});
+			}
+		},
+
 		methods: {
 			searchRedirect(e) {
 				if (e.key == "Enter") {

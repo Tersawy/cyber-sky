@@ -61,18 +61,32 @@
 			errors: s => s.errors
 		}),
 		methods: {
-			submit() {
+			async submit() {
 				let fd = new FormData(this.$refs.form.$el);
 
 				this.isloading = true;
-				this.$store
-					.dispatch("auth/login", fd)
-					.then(() => {
-						this.$store.dispatch("auth/user");
-						this.$emit("submit");
-						location.reload(true);
-					})
-					.finally(() => (this.isloading = false));
+
+				try {
+					let res = await this.$store.dispatch("auth/login", fd);
+
+					if (res.Status == "not verified") {
+						this.$store.commit("setLoginDailog", false);
+
+						return this.$swal.fire({
+							icon: "warning",
+							title: "برجاء التأكد من البريد الالكتروني لتفعيل الحساب الخاص بك",
+							confirmButtonText: "اغلاق",
+							confirmButtonColor: "#0082c6"
+						});
+					}
+
+					await this.$store.dispatch("auth/user");
+
+					this.$router.go(0);
+				} catch (err) {
+				} finally {
+					this.isloading = false;
+				}
 			},
 			async google() {
 				const googleUser = await this.$gAuth.signIn();
