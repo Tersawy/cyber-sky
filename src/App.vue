@@ -7,11 +7,11 @@
 		</v-main>
 
 		<mydialog v-model="loginDailog" width="">
-			<form-login @submit="close"></form-login>
+			<form-login></form-login>
 		</mydialog>
 
 		<mydialog v-model="registerDailog" width="">
-			<form-resgiter @submit="close"></form-resgiter>
+			<form-resgiter></form-resgiter>
 		</mydialog>
 
 		<CustomFooter />
@@ -54,13 +54,6 @@
 				set: function(v) {
 					this.$store.commit("setLoginDailog", v);
 				}
-			}
-		},
-
-		methods: {
-			close() {
-				this.loginDailog = false;
-				this.registerDailog = false;
 			}
 		}
 	};
