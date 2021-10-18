@@ -23,7 +23,7 @@
 				<v-expansion-panel-content>
 					<v-list-item-group>
 						<template v-for="lesson in unit.lessons">
-							<v-list-item :key="lesson.id" @click="$emit('lesson', lesson)">
+							<v-list-item :key="lesson.id" @click="playVideo(lesson)">
 								<template v-slot:default="{ active }">
 									<v-list-item-action v-if="showCheckbox">
 										<v-checkbox :input-value="active"></v-checkbox>
@@ -66,6 +66,10 @@
 <script>
 	export default {
 		props: {
+			reviewInModal: {
+				type: Boolean,
+				default: true
+			},
 			showCheckbox: {
 				type: Boolean,
 				default: false
@@ -89,8 +93,12 @@
 		},
 		methods: {
 			playVideo(lesson) {
-				this.pre = true;
-				this.currentVideo = process.env.VUE_APP_VIDEO_URL + lesson.url;
+				this.$emit("lesson", lesson);
+
+				if (this.reviewInModal) {
+					this.currentVideo = this.VIDEO_URL + lesson.url;
+					this.pre = true;
+				}
 			}
 		}
 	};
