@@ -25,30 +25,31 @@
 					</v-col>
 				</v-layout>
 			</v-container>
-			<!-- <iframe width="100%" height="478" src="https://www.youtube.com/embed/tgbNymZ7vqY">
-            </iframe> -->
 			<v-row justify="center" align="center">
 				<v-col cols="12">
-					<div v-if="isXvast" style="width:100%;height:600px">
+					<div style="width:100%;height:600px" v-if="isXvast">
 						<video
 							controls
+							v-if="lesson.url"
 							class="video-js"
 							ref="xvast_player"
 							id="xvast_player"
-							:src="`${lesson.url}#t=1,2`"
-							data-setup='{ "autoplay":false, "playbackRates": [0.5, 0.7, 1, 1.5, 2, 3, 4], "width": 856, "height": 480 }'
+							:src="`${VIDEO_URL}${lesson.url}#t=1,2`"
+							:data-setup="JSON.stringify({ playbackRates: [0.5, 0.7, 1, 1.2, 1.5, 2], autoplay: true, width: 856, height: 480 })"
 							preload="auto"
 						></video>
 					</div>
-					<div v-else class="grey text-center " style="width:100%;height:478px">
-						<p class="pt-12">Please open the protected files in Xvast browser.<a href="https://www.xvast.com">Download Xvast</a></p>
+					<div v-else class="black text-center d-flex align-center justify-center" style="width:100%;height:478px">
+						<p class="white--text">
+							Please open the protected videos in Xvast browser. &nbsp;&nbsp;&nbsp;<a class="white--text" href="https://www.xvast.com">Download Xvast</a>
+						</p>
 					</div>
 				</v-col>
 			</v-row>
 
 			<v-tabs-items v-model="tab">
 				<v-tab-item>
-					<EducationalContent v-if="course" @lesson="lesson = $event" showCheckbox :data="course.units" />
+					<EducationalContent :review-in-modal="false" v-if="course" @lesson="loadLesson" showCheckbox :data="course.units" />
 				</v-tab-item>
 				<v-tab-item class="container">
 					<v-card outlined elevation="0">
@@ -123,8 +124,6 @@
 </template>
 
 <script>
-	import { mapState } from "vuex";
-
 	const SectionPage = () => import("@component/Section.vue");
 	const EducationalContent = () => import("@component/course/tabs/EducationalContent.vue");
 	const Task = () => import("@component/course/Task.vue");
@@ -138,16 +137,7 @@
 			Comment
 		},
 		watch: {
-			lesson() {
-				this.$refs.xvast_player.load();
-				this.$refs.xvast_player.addEventListener(
-					"error",
-					() => {
-						this.getLic();
-					},
-					true
-				);
-			}
+			lesson() {}
 		},
 		data() {
 			return {
@@ -156,26 +146,42 @@
 				lesson: {},
 				course: {},
 				items: [
-					{
-						text: "الرئيسية",
-						href: "/"
-					},
-					{
-						text: "كورساتي ",
-						href: "/user/courses/"
-					},
-					{
-						text: " الرسائل الواردة",
-						disabled: true
-					}
+					{ text: "الرئيسية", href: "/" },
+					{ text: "كورساتي ", href: "/user/courses/" },
+					{ text: " الرسائل الواردة", disabled: true }
 				],
-				isXvast: navigator.userAgent.indexOf("Xvast") == 1,
 				comments: [],
 				currentComment: {},
 				showReplyDailog: false,
 				comment_text: "",
 				isloading: false
 			};
+		},
+		async mounted() {
+			try {
+				let res = await this.$store.dispatch("model/sendReq", { url: `user/course`, id: this.$route.params.id, method: "get" });
+
+				if (!res.data.status) this.$router.back();
+
+				this.course = res.data.course_detals;
+
+				this.loadFirstLessonVideo();
+
+				this.isloading = true;
+
+				res = await this.$store.dispatch("model/sendReq", { url: `user/comments`, id: this.course.id, method: "get" });
+
+				this.isloading = false;
+
+				this.comments = res.data;
+			} catch (err) {
+				//
+			}
+		},
+		computed: {
+			isXvast() {
+				return navigator.userAgent.indexOf("Xvast") > 0;
+			}
 		},
 		methods: {
 			submitComment() {
@@ -192,44 +198,46 @@
 						this.comments.push(resp.data);
 					});
 			},
-			getLic() {
+			loadLesson(lesson) {
+				this.lesson = lesson;
+
 				var myVid = this.$refs.xvast_player;
-				if (myVid) {
-					var isSupp = myVid.canPlayType("xvast");
-					alert(isSupp);
-					if (isSupp.indexOf("https") > 0) {
-						alert(isSupp);
-						var licURL = isSupp.substring(isSupp.indexOf("https")); // Using substring to capture a URL to obtain license;
-						window.location.href = licURL; // Redirecting to obtain license page to verify and obtain license.
+
+				if (!myVid) return;
+
+				myVid.load();
+
+				myVid.addEventListener("error", this.getLicense, true);
+			},
+
+			getLicense() {
+				var myVid = this.$refs.xvast_player;
+
+				if (!myVid) return;
+
+				var isSupp = myVid.canPlayType("xvast");
+
+				if (isSupp.indexOf("https") > 0) {
+					var licURL = isSupp.substring(isSupp.indexOf("https")); // Using substring to capture a URL to obtain license;
+
+					window.location.href = licURL; // Redirecting to obtain license page to verify and obtain license.
+				}
+			},
+
+			loadFirstLessonVideo() {
+				for (let u = 0; u < this.course.units.length; u++) {
+					let unit = this.course.units[u];
+
+					if (!unit.lessons.length) continue;
+
+					for (let l = 0; l < unit.lessons.length; l++) {
+						let lesson = unit.lessons[l];
+						if (lesson.url) return (this.lesson = lesson);
 					}
 				}
 			}
 		},
-		created() {
-			this.$store
-				.dispatch("model/sendReq", {
-					url: `user/course`,
-					id: this.$route.params.id,
-					method: "get"
-				})
-				.then(resp => {
-					this.course = resp.data.course_detals;
-					this.isloading = true;
-					this.$store
-						.dispatch("model/sendReq", {
-							url: `user/comments`,
-							id: this.course.id,
-							method: "get"
-						})
-						.then(resp => {
-							this.isloading = false;
-							this.comments = resp.data;
-						});
-					if (!resp.data.status) this.$router.back();
-				});
-
-			this.isXvast = navigator.userAgent.indexOf("Xvast");
-		}
+		created() {}
 	};
 </script>
 
