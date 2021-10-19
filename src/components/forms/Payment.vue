@@ -31,7 +31,8 @@
 			<v-tab-item value="usdt">
 				<v-row>
 					<v-col cols="12" md="6" class="pa-4">
-						<h2>بيانات ال USDT</h2>
+						<h2 class="d-inline-block ml-3 mt-4">بيانات ال USDT</h2>
+						<span class="font-weight-bold mb-8 d-inline-block blue--text" style="font-size:13px">قم بالتحويل على شبكة TRC20</span>
 						<h4>عنوان التحويل</h4>
 						<h4 class="pa-2">
 							<v-text-field
@@ -57,6 +58,10 @@
 							outlined
 							hint="Transaction ID ادخل رقم العملية  "
 						></v-text-field>
+						<a class="text-decoration-none" href="whatsapp://send?text=Hello">
+							<span class="font-weight-bold text-decoration-underline mb-8 green--text ml-2" style="font-size:13px">بعد إكمال الطلب قم بالتواصل مع الدعم الفني</span>
+							<v-icon dense color="#4CAF50" style="cursor:pointer">fa-whatsapp</v-icon>
+						</a>
 					</v-col>
 				</v-row>
 			</v-tab-item>
