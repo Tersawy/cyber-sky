@@ -65,6 +65,17 @@
 				lastCourses: []
 			};
 		},
+		mounted() {
+			if (this.$route.params.paymentSuccess) {
+				this.$swal.fire({
+					icon: "success",
+					title: "تهانينا, تم شراء الدورة بنجاح",
+					confirmButtonText: "اغلاق",
+					confirmButtonColor: "#0082c6"
+				});
+			}
+			this.getAll();
+		},
 		computed: {
 			...mapState("model", {
 				isloading: s => s.isloading
@@ -82,13 +93,6 @@
 					})
 					.then(resp => (this.lastCourses = resp.data.results.slice(0, 3)));
 			}
-		},
-
-		created() {
-			// this.$store.dispatch("model/_all",{
-			//     url:"user/courses",
-			// }).then( data=> this.courses = data.data)
-			this.getAll();
 		}
 	};
 </script>

@@ -13,7 +13,6 @@
 
 			<v-layout row class="mb-12 mt-15">
 				<v-col cols="12">
-					<!-- <h1 class="mb-4">معلومات الدفع</h1> -->
 					<FormPayment :data="{ ...data, ...current }" />
 				</v-col>
 			</v-layout>
@@ -55,8 +54,6 @@
 			current: s => s.current
 		}),
 		created() {
-			this.$store.dispatch("model/sendReq", { method: "all", url: "user/deposit/address/" });
-
 			if (this.$route.params.slug) {
 				this.$store.dispatch("model/sendReq", { method: "get", url: `meeting`, id: this.$route.params.slug });
 			} else {
