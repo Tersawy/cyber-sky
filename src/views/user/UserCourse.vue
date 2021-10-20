@@ -65,8 +65,18 @@
 				lastCourses: []
 			};
 		},
-		mounted() {
+		async mounted() {
+			this.getAll();
+
 			if (this.$route.params.paymentSuccess) {
+				await this.$store.dispatch("model/sendReq", {
+					url: "payment/confirmed",
+					method: "create",
+					item: JSON.stringify({
+						transactionid: this.$route.params.sessionId
+					})
+				});
+
 				this.$swal.fire({
 					icon: "success",
 					title: "تهانينا, تم شراء الدورة بنجاح",
@@ -74,7 +84,6 @@
 					confirmButtonColor: "#0082c6"
 				});
 			}
-			this.getAll();
 		},
 		computed: {
 			...mapState("model", {

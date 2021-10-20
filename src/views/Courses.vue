@@ -67,6 +67,30 @@
 				]
 			};
 		},
+		mounted() {
+			if (this.$route.params.paymentSuccess == false) {
+				this.$store.dispatch("model/sendReq", {
+					url: "payment/confirmed/cancel/",
+					method: "create",
+					item: JSON.stringify({
+						transactionid: this.$route.params.sessionId
+					})
+				});
+
+				const Toast = this.$swal.mixin({
+					toast: true,
+					position: "top-end",
+					showConfirmButton: false,
+					timer: 3000,
+					didOpen: toast => {
+						toast.addEventListener("mouseenter", this.$swal.stopTimer);
+						toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+					}
+				});
+
+				Toast.fire({ icon: "error", title: "Payment canceled" });
+			}
+		},
 		computed: {
 			...mapState("model", {
 				data: s => s.data,
