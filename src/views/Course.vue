@@ -46,7 +46,7 @@
 					</v-tabs>
 				</v-col>
 
-				<v-col cols="12" md="4" class=" mt-md-n6">
+				<v-col cols="12" md="4" class="order-first order-md-2 mt-md-n6">
 					<CourseCard :data="current" />
 					<v-alert v-model="alertSuccessAddToCart" type="success" class="mt-12">
 						<h3>تمت الإضافة</h3>
