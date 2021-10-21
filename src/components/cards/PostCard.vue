@@ -2,7 +2,7 @@
 	<v-hover>
 		<template v-slot:default="{ hover }">
 			<v-card :elevation="hover && !full ? 10 : 1" :to="full ? '#' : `post/${data.id}/`">
-				<v-card class="pa-1" flat>
+				<v-card class="pa-1" flat v-if="data.image">
 					<v-img
 						:src="`https://f9296f68580049556956dec4fa094987.cyber-sky.org/media/${data.image}`"
 						:lazy-src="require('../../assets/logo end.jpg')"
@@ -23,7 +23,7 @@
 					<v-list-item-content>
 						<v-list-item-title v-if="data.teacher">{{ data.teacher }}</v-list-item-title>
 						<v-list-item-title v-else> الادارة </v-list-item-title>
-						<v-list-item-subtitle class="text-body-2">{{ moment(data.created_at, "LT").fromNow() }}</v-list-item-subtitle>
+						<v-list-item-subtitle class="text-body-2">{{ moment(data.created_at).fromNow() }}</v-list-item-subtitle>
 					</v-list-item-content>
 				</v-list-item>
 			</v-card>
