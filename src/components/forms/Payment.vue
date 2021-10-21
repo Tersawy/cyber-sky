@@ -5,14 +5,14 @@
 
 		<v-item-group v-model="payment.type">
 			<v-row>
-				<v-col cols="6" sm="4">
+				<v-col cols="12" sm="6" lg="4" xl="3">
 					<v-item v-slot="{ active, toggle }" value="cc">
 						<v-card outlined class="pa-6 payment-icon" :class="{ 'active-card': active }" @click="toggle">
 							<v-img contain class="mx-auto" src="./../../assets/icons/master.png"></v-img>
 						</v-card>
 					</v-item>
 				</v-col>
-				<v-col cols="12" sm="4">
+				<v-col cols="12" sm="6" lg="4" xl="3">
 					<v-item v-slot="{ active, toggle }" value="usdt">
 						<v-card outlined class="pa-6 payment-icon" :class="{ 'active-card': active }" @click="toggle">
 							<v-img contain class="mx-auto" src="./../../assets/tether_Logo.png"></v-img>
@@ -30,7 +30,7 @@
 
 			<v-tab-item value="usdt">
 				<v-row>
-					<v-col cols="12" md="6" class="pa-4">
+					<v-col cols="12" sm="8" lg="6" class="pa-4">
 						<h2 class="d-inline-block ml-3 mt-4">بيانات ال USDT</h2>
 						<span class="font-weight-bold mb-8 d-inline-block blue--text" style="font-size:13px">قم بالتحويل على شبكة TRC20</span>
 						<h4>عنوان التحويل</h4>
@@ -41,13 +41,17 @@
 								readonly
 								label="Address"
 								:error-messages="errors.address"
+								hide-details
 								disabled
 								id="address"
 								outlined
 								background-color="grey lighten-4"
 							></v-text-field>
 						</h4>
-						<p class="pt-3 px-2 ma-0">بعد التحويل يرجاء كتابة Transaction ID</p>
+						<v-col cols="12" sm="4" offset-sm="4" class="d-block d-sm-none">
+							<v-img :src="require('../../assets/suport/qr.jpeg')"></v-img>
+						</v-col>
+						<p class="pt-3 px-2 ma-0">بعد التحويل برجاء كتابة Transaction ID</p>
 
 						<v-text-field
 							name="tx_id"
@@ -62,6 +66,9 @@
 							<span class="font-weight-bold text-decoration-underline mb-8 green--text ml-2" style="font-size:13px">بعد إكمال الطلب قم بالتواصل مع الدعم الفني</span>
 							<v-icon dense color="#4CAF50" style="cursor:pointer">fa-whatsapp</v-icon>
 						</a>
+					</v-col>
+					<v-col cols="4" sm="4" lg="3" xl="2" offset-lg="2" offset-xl="1" class="mt-16 d-none d-sm-block pt-12 pt-md-0">
+						<v-img :src="require('../../assets/suport/qr.jpeg')"></v-img>
 					</v-col>
 				</v-row>
 			</v-tab-item>
@@ -84,7 +91,7 @@
 				</v-list-item-content>
 			</v-list-item>
 
-			<v-col cols="6">
+			<v-col cols="12" sm="8" lg="6" xl="4">
 				<v-checkbox dense v-model="payment.accept" :value="payment.accept" hide-details>
 					<template v-slot:label>
 						<v-btn text color="blue" to="/service" @click.stop>
@@ -93,7 +100,7 @@
 					</template>
 				</v-checkbox>
 			</v-col>
-			<v-col cols="2" class="d-flex align-end">
+			<v-col cols="12" sm="4" lg="6" xl="4" class="d-flex align-end">
 				<v-btn color="blue" large elevation="4" type="submit" :dark="!!payment.accept" :disabled="!payment.accept" :loading="isloading">
 					إكمال الطلب
 				</v-btn>
