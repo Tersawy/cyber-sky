@@ -13,7 +13,7 @@
 					v-model="to"
 					:items="[
 						//// &quot;&quot;
-						{ text: 'استاذه', value: 2 },
+						{ text: 'المدرب', value: 2 },
 						{ text: 'الادراة', value: 4 }
 					]"
 					label="إرسال الرسالة إلى"
