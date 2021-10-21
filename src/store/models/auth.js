@@ -1,6 +1,10 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "https://3b13c294758ac0ddce1a755cccdcbfd1.cyber-sky.org/";
+axios.defaults.headers = {
+	Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+	"Content-Type": "application/json"
+};
 
 export default {
 	namespaced: true,
@@ -20,6 +24,9 @@ export default {
 		destroyToken(state) {
 			state.token = null;
 			localStorage.removeItem("access_token");
+		},
+		setErrors(state, errors) {
+			state.errors = errors;
 		}
 	},
 	actions: {
@@ -98,6 +105,63 @@ export default {
 					state.errors = errors.response.data;
 					return Promise.reject(errors);
 				});
+		},
+
+		async resetPasswordByEmail({ state }, payload) {
+			state.errors = {};
+
+			delete axios.defaults.headers.Authorization;
+
+			try {
+				//
+				let { data } = await axios.post("request-reset-email/", payload);
+
+				return Promise.resolve(data);
+				//
+			} catch ({ response: { data: errors } }) {
+				//
+				state.errors = errors;
+
+				return Promise.reject(errors);
+			}
+		},
+
+		async verifyToken({ state }, { uid, token }) {
+			state.errors = {};
+
+			delete axios.defaults.headers.Authorization;
+
+			try {
+				//
+				let { data } = await axios.get(`password-reset/${uid}/${token}`);
+
+				return Promise.resolve(data);
+				//
+			} catch ({ response: { data: errors } }) {
+				//
+				state.errors = errors;
+
+				return Promise.reject(errors);
+			}
+		},
+
+		async changePassword({ state }, payload) {
+			state.errors = {};
+
+			delete axios.defaults.headers.Authorization;
+
+			try {
+				//
+				let { data } = await axios.patch(`password-reset-complete/`, payload);
+
+				return Promise.resolve(data);
+				//
+			} catch ({ response: { data: errors } }) {
+				//
+				state.errors = errors;
+
+				return Promise.reject(errors);
+			}
 		}
 	}
 };

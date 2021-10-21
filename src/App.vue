@@ -14,6 +14,14 @@
 			<form-resgiter></form-resgiter>
 		</mydialog>
 
+		<mydialog v-model="forgetPasswordDailog" width="">
+			<ForgetPassword />
+		</mydialog>
+
+		<mydialog v-model="changePasswordDailog" width="">
+			<ChangePassword />
+		</mydialog>
+
 		<CustomFooter />
 	</v-app>
 </template>
@@ -22,6 +30,10 @@
 	import mydialog from "@/components/Dialog.vue";
 	import formLogin from "@/components/forms/Login.vue";
 	import formResgiter from "@/components/forms/Register.vue";
+
+	const ForgetPassword = () => import("@/components/forms/ForgetPassword.vue");
+	const ChangePassword = () => import("@/components/forms/ChangePassword.vue");
+
 	const CustomNavbar = () => import("@component/layout/Navbar.vue");
 
 	// const CustomHeader = () => import("@component/layout/Header.vue");
@@ -35,7 +47,9 @@
 			CustomFooter,
 			mydialog,
 			formLogin,
-			formResgiter
+			formResgiter,
+			ForgetPassword,
+			ChangePassword
 		},
 
 		computed: {
@@ -53,6 +67,22 @@
 				},
 				set: function(v) {
 					this.$store.commit("setLoginDailog", v);
+				}
+			},
+			forgetPasswordDailog: {
+				get: function() {
+					return this.$store.state.forgetPasswordDailog;
+				},
+				set: function(v) {
+					this.$store.commit("setForgetPasswordDailog", v);
+				}
+			},
+			changePasswordDailog: {
+				get: function() {
+					return this.$store.state.changePasswordDailog;
+				},
+				set: function(v) {
+					this.$store.commit("setChangePasswordDailog", v);
 				}
 			}
 		}

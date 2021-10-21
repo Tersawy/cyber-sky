@@ -94,7 +94,9 @@
 		}),
 
 		mounted() {
-			if (this.$route.params.verified && !this.isLogin) {
+			let params = this.$route.params;
+
+			if (params.verified && !this.isLogin) {
 				this.$swal
 					.fire({
 						icon: "success",
@@ -107,6 +109,27 @@
 							this.$store.commit("setLoginDailog", true);
 						}
 					});
+			}
+
+			if (params.isTokenVerified) {
+				this.$store.commit("setChangePasswordDailog", true);
+			}
+
+			if (params.isTokenVerified === false) {
+				const Toast = this.$swal.mixin({
+					toast: true,
+					position: "top-end",
+					showConfirmButton: false,
+					timer: 5000,
+					didOpen: toast => {
+						toast.addEventListener("mouseenter", this.$swal.stopTimer);
+						toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+					}
+				});
+
+				Toast.fire({ icon: "error", title: "انتهت صلاحية الرابط" });
+
+				this.$store.commit("setForgetPasswordDailog", true);
 			}
 		},
 

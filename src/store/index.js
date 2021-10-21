@@ -10,7 +10,9 @@ export default new Vuex.Store({
 		setting: {},
 		user_courses: [],
 		registerDailog: false,
-		loginDailog: false
+		loginDailog: false,
+		forgetPasswordDailog: false,
+		changePasswordDailog: false
 	},
 	getters: {
 		myCourses: state => {
@@ -29,6 +31,12 @@ export default new Vuex.Store({
 		},
 		setLoginDailog(state, value) {
 			state.loginDailog = value;
+		},
+		setForgetPasswordDailog(state, value) {
+			state.forgetPasswordDailog = value;
+		},
+		setChangePasswordDailog(state, value) {
+			state.changePasswordDailog = value;
 		}
 	},
 	actions: {

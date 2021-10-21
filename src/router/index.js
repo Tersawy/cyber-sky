@@ -24,6 +24,11 @@ const routes = [
 		}
 	},
 	{
+		path: "/password-reset/:uid/:token",
+		name: "VerifyPasswordToken",
+		component: () => import("@/views/VerifyPasswordToken.vue")
+	},
+	{
 		path: "/verify",
 		name: "Verify",
 		component: () => import("../views/Verify.vue")

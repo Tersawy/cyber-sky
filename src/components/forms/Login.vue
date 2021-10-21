@@ -17,7 +17,7 @@
 
 			<v-col cols="12" class="d-flex">
 				<v-spacer></v-spacer>
-				<v-btn text color="grey darken-2" small>
+				<v-btn text color="grey darken-2" small @click="showForgetPassword">
 					نسيت كلمة السر ؟
 				</v-btn>
 			</v-col>
@@ -61,6 +61,11 @@
 			errors: s => s.errors
 		}),
 		methods: {
+			showForgetPassword() {
+				this.$store.commit("setLoginDailog", false);
+				this.$store.commit("setForgetPasswordDailog", true);
+			},
+
 			async submit() {
 				let fd = new FormData(this.$refs.form.$el);
 
