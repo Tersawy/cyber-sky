@@ -8,7 +8,10 @@
 	"editor.minimap.enabled": false,
 	"files.autoSave": "onWindowChange",
 	"[javascript]": {
-		"editor.autoClosingBrackets": "always"
+		"editor.autoClosingBrackets": "always",
+		"editor.inlayHints.enabled": true,
+		"editor.suggest.showInlineDetails": true,
+		"outline.showFunctions": true
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
