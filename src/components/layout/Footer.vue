@@ -36,6 +36,8 @@
 										:height="$vuetify.breakpoint.xlAndUp ? '100' : '80'"
 										color="blue darken-3 mt-md-6 mt-xl-8"
 										dark
+										href="https://www.facebook.com/cyberskyacademy"
+										target="blank"
 									>
 										<v-icon x-large>fa-facebook</v-icon>
 									</v-btn>
@@ -49,6 +51,8 @@
 										:height="$vuetify.breakpoint.xlAndUp ? '100' : '80'"
 										color="pink darken-2"
 										dark
+										href="https://www.instagram.com/cyberskyacademy/"
+										target="blank"
 									>
 										<v-icon x-large>fa-instagram</v-icon>
 									</v-btn>
@@ -61,6 +65,8 @@
 										:height="$vuetify.breakpoint.xlAndUp ? '100' : '80'"
 										color="info"
 										dark
+										href="https://twitter.com/cyberskyacademy"
+										target="blank"
 									>
 										<v-icon x-large>fa-twitter</v-icon>
 									</v-btn>
