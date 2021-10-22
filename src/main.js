@@ -36,6 +36,7 @@ const gauthOption = {
 Vue.use(GAuth, gauthOption);
 
 router.beforeEach((to, from, next) => {
+	store.commit("setLoading", true);
 	store.commit("auth/initToken"); // Load Token From storage
 	if (!store.state.sections.length) {
 		store

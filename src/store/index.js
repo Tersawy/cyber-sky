@@ -12,7 +12,8 @@ export default new Vuex.Store({
 		registerDailog: false,
 		loginDailog: false,
 		forgetPasswordDailog: false,
-		changePasswordDailog: false
+		changePasswordDailog: false,
+		isLoading: true
 	},
 	getters: {
 		myCourses: state => {
@@ -37,6 +38,11 @@ export default new Vuex.Store({
 		},
 		setChangePasswordDailog(state, value) {
 			state.changePasswordDailog = value;
+		},
+		setLoading(state, value) {
+			state.isLoading = value;
+			document.body.style.overflowY = value ? "hidden" : "auto";
+			window.scrollTo(0, 0);
 		}
 	},
 	actions: {

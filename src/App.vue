@@ -23,6 +23,7 @@
 		</mydialog>
 
 		<CustomFooter />
+		<Loading />
 	</v-app>
 </template>
 
@@ -30,6 +31,8 @@
 	import mydialog from "@/components/Dialog.vue";
 	import formLogin from "@/components/forms/Login.vue";
 	import formResgiter from "@/components/forms/Register.vue";
+
+	import Loading from "@/components/Loading.vue";
 
 	const ForgetPassword = () => import("@/components/forms/ForgetPassword.vue");
 	const ChangePassword = () => import("@/components/forms/ChangePassword.vue");
@@ -49,7 +52,8 @@
 			formLogin,
 			formResgiter,
 			ForgetPassword,
-			ChangePassword
+			ChangePassword,
+			Loading
 		},
 
 		computed: {
@@ -84,6 +88,9 @@
 				set: function(v) {
 					this.$store.commit("setChangePasswordDailog", v);
 				}
+			},
+			isLoading() {
+				return this.$store.state.isLoading;
 			}
 		}
 	};

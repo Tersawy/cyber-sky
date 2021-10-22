@@ -132,14 +132,19 @@
 			data: s => s.data,
 			isloading: s => s.isloading
 		}),
-		created() {
-			this.$store.dispatch("model/sendReq", { method: "all", url: "course", params: { limit: 3 } }).then(resp => {
-				// console.log(resp.data.results)
-				this.courses = resp.data;
-			});
-			this.$store.dispatch("model/sendReq", { method: "all", url: "blog/post", params: { limit: 2 } }).then(resp => {
-				this.posts = resp.data;
-			});
+		async mounted() {
+			let coursesRequest = this.$store.dispatch("model/sendReq", { method: "all", url: "course", params: { limit: 3 } });
+			let postsRequest = this.$store.dispatch("model/sendReq", { method: "all", url: "blog/post", params: { limit: 2 } });
+
+			try {
+				let [coursesResponse, postsResponse] = await Promise.all([coursesRequest, postsRequest]);
+				this.courses = coursesResponse.data;
+				this.posts = postsResponse.data;
+			} catch (err) {
+				//
+			} finally {
+				this.$emit("finished");
+			}
 		}
 	};
 </script>
