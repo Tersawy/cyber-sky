@@ -84,7 +84,7 @@
 					if (this.$route.params.paymentSuccess) {
 						this.$swal.fire({
 							icon: "success",
-							title: "تهانينا, تم شراء الدورة بنجاح",
+							title: "تهانينا, تم شراء الدورة بنجاح, برجاء تفقد البريد الالكتروني ( المهمل )",
 							confirmButtonText: "اغلاق",
 							confirmButtonColor: "#0082c6"
 						});
