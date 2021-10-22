@@ -169,7 +169,7 @@
 
 				this.isloading = true;
 
-				// this.setLoading();
+				this.setLoading();
 
 				res = await this.$store.dispatch("model/sendReq", { url: `user/comments`, id: this.course.id, method: "get" });
 
