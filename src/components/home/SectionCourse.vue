@@ -5,6 +5,11 @@
 				<v-col sm="6" md="4" xl="3" cols="12" v-for="course in courses.results" :key="course.id">
 					<CoursesCard :data="course" :class="`mt-${course.id * 4}`"> </CoursesCard>
 				</v-col>
+				<v-col cols="12" class="text-center">
+					<v-btn elevation="0" large v-if="courses.results && courses.results.length" class="mx-2 mt-8 font-weight-bold" to="/courses">
+						المزيد...
+					</v-btn>
+				</v-col>
 			</v-layout>
 
 			<v-layout row wrap justify-center>
@@ -15,6 +20,11 @@
 				</v-col>
 				<v-col sm="6" lg="4" xl="3" cols="12" v-for="post in posts.results" :key="post.id">
 					<PostCard class="mt-7" :data="post"> </PostCard>
+				</v-col>
+				<v-col cols="12" class="text-center">
+					<v-btn elevation="0" large v-if="posts.results && posts.results.length" class="mx-2 mt-8 font-weight-bold" to="/blog">
+						المزيد...
+					</v-btn>
 				</v-col>
 			</v-layout>
 			<v-layout row wrap justify-center>
