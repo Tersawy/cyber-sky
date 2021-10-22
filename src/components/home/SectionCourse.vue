@@ -42,10 +42,11 @@
 				:dots="true"
 				:center-mode="true"
 				:multiple="true"
-				:slidesToShow="3"
+				:slidesToShow="2"
 				:slidesToScroll="1"
 				:infinite="true"
 				:swipeToSlide="true"
+				:adaptiveHeight="true"
 				:initialSlide="2"
 				centerPadding="30px"
 				:responsive="carouselResponsiveOptions"
@@ -57,7 +58,7 @@
 						</div>
 						<p class="user-opinion">
 							<span class="user-text"> {{ opinion.text }} </span>
-							<span class="username"> — {{ opinion.username }} </span>
+							<span class="username text-right w-100"> — {{ opinion.username }} </span>
 						</p>
 					</div>
 				</div>
@@ -80,57 +81,47 @@
 		data: () => ({
 			opinions: [
 				{
-					userImg: "Loreelei.jpg",
-					username: "Loreelei",
+					userImg: "Nazim_Birmingham_UK.png",
+					username: "Nazim Birmingham - UK",
 					text:
-						"Gaining new knowledge and skills through Cyber-Sky helped me break out of the mold I'd been in for over a decade. Cyber-Sky helped open doors for me."
+						"Grateful for the opportunity of having Ismael as a trainer for CEH. He has the ability to teach at all levels and can cater to different learning styles. Training sessions were very informative yet very engaging and he always reinforced knowledge through practicals and challenges. This has definitely helped to me to progress my journey in cyber security as everything I had learnt with Ismael I was able to effectively put it into use in a real life environment and I pretty much transitioned seamlessly."
 				},
 				{
-					userImg: "Khadijah_Abdul_Nabi.jpg",
-					username: "Khadijah Abdul Nabi",
+					userImg: "محمود_فلسطين.png",
+					username: "محمود - فلسطين",
 					text:
-						"With Cyber-Sky, I gained the confidence I needed to start a new journey in life. Now I’m in the process of transitioning to what I’ve always dreamed of doing."
+						"Ismail is an absolutely incredible Python teacher. I have just completed the course on Python and I can say I understood every single thing thanks to his excellent teaching style and skills. I would definitely recommend Ismail as an ethical hacker as well as a Python instructor."
 				},
 				{
-					userImg: "Tri_Suseno.jpg",
-					username: "Tri Suseno",
-					text: "Cyber-sky has been invaluable for my businesses and my personal development. The courses helped me improve my day-to-day problem solving."
-				},
-				{
-					userImg: "Dariya_Khokhel.jpg",
-					username: "Dariya Khokhel",
-					text:
-						"These courses, from leading institutions all over the world, are only accessible to me through Cyber-Sky. I learn something new and fascinating every day."
-				},
-				{
-					userImg: "Zeeshan_Usmani.jpg",
-					username: "Zeeshan Usmani",
-					text: "I got hooked with everything going on in the courses, from course content and TA feedback to meetup events and the professor's Twitter feed."
+					userImg: "مشاري_الكويت.png",
+					username: "مشاري - الكويت",
+					text: "تشرفت بدراسة كورس CSJP مع مدربين منصة CyberSky مع نخبة من المهندسين ساعدني الكورس في اجتياز شهادة eCPPT وحصولي على ترقية في الوظيفة."
 				}
 			],
 			carouselResponsiveOptions: [
 				{
 					breakpoint: 1201,
 					settings: {
-						slidesToShow: 3,
-						slidesToScroll: 3,
-						infinite: true,
+						slidesToShow: 2,
+						slidesToScroll: 2,
 						dots: true
 					}
 				},
 				{
-					breakpoint: 1200,
+					breakpoint: 1115,
 					settings: {
-						slidesToShow: 2,
-						slidesToScroll: 2,
-						initialSlide: 2
+						slidesToShow: 1,
+						slidesToScroll: 1,
+						initialSlide: 1
 					}
 				},
 				{
-					breakpoint: 680,
+					breakpoint: 600,
 					settings: {
 						slidesToShow: 1,
-						slidesToScroll: 1
+						slidesToScroll: 1,
+						centerMode: false,
+						initialSlide: 0
 					}
 				}
 			],
@@ -172,27 +163,30 @@
 			.card-opinion {
 				display: flex;
 				box-shadow: 2px 2px 2px #bdbdbd;
-				height: 170px;
+				min-height: 200px;
 				margin: 0 15px;
 				background-color: #fff;
 				.img-container {
 					position: relative;
 					width: 194px;
-					&:after {
-						position: absolute;
-						content: "";
-						top: 0;
-						right: -1px;
-						border-top: 170px solid #fff;
-						border-left: 45px solid transparent;
-						width: 0;
-					}
+					padding: 2px;
+					// &:after {
+					// 	position: absolute;
+					// 	content: "";
+					// 	top: 0;
+					// 	right: -1px;
+					// 	border-top: 170px solid #fff;
+					// 	border-left: 45px solid transparent;
+					// 	width: 0;
+					// }
 					img.user-img {
 						width: 100%;
 						height: 100%;
 					}
 				}
 				p.user-opinion {
+					overflow: hidden;
+					text-overflow: ellipsis;
 					margin: 0;
 					font-size: 12px;
 					padding: 10px;
