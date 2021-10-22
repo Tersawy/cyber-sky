@@ -92,7 +92,7 @@
 												<v-icon> fa-close </v-icon>
 											</v-btn>
 										</v-card-title>
-										<v-card-text style="white-space: pre-wrap">
+										<v-card-text style="white-space: pre-wrap" v-if="Object.keys(active).length">
 											<h1 class="text-capitalize px-0 mx-0">{{ active.title }}</h1>
 											<h4 class="mt-4 mx-3">{{ active.text }}</h4>
 											<v-card-text>
@@ -161,9 +161,19 @@
 				this.active = {};
 			}
 		},
+
+		async mounted() {
+			try {
+				await this.getAll();
+			} catch (err) {
+			} finally {
+				this.setLoading();
+			}
+		},
+
 		methods: {
 			getAll() {
-				this.$store.dispatch("model/sendReq", {
+				return this.$store.dispatch("model/sendReq", {
 					url: `chat/me?role=${this.tab}`,
 					method: "all"
 				});
@@ -193,9 +203,6 @@
 				data: s => s.data,
 				isloading: s => s.isloading
 			})
-		},
-		created() {
-			this.getAll();
 		}
 	};
 </script>

@@ -16,6 +16,10 @@
 		components: {
 			SectionPage,
 			TermsOfServiceCard
+		},
+
+		mounted() {
+			this.setLoading();
 		}
 	};
 </script>

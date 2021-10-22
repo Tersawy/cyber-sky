@@ -61,6 +61,11 @@
 				isloading: false
 			};
 		},
+
+		mounted() {
+			this.setLoading();
+		},
+
 		methods: {
 			submit() {
 				this.isloading = true;

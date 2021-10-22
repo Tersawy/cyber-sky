@@ -15,6 +15,11 @@
 		components: {
 			SectionPage,
 			PrivacyCard
+		},
+
+		mounted() {
+			this.$store.commit("setRegisterDailog", false);
+			this.setLoading();
 		}
 	};
 </script>

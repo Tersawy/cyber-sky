@@ -67,47 +67,59 @@
 				]
 			};
 		},
-		mounted() {
-			if (this.$route.params.paymentSuccess == false) {
-				this.$store.dispatch("model/sendReq", {
-					url: "payment/confirmed/cancel/",
-					method: "create",
-					item: JSON.stringify({
-						transactionid: this.$route.params.sessionId
-					})
-				});
+		async mounted() {
+			try {
+				await this.getAll();
+			} catch (err) {
+			} finally {
+				this.setLoading(() => {
+					if (this.$route.params.paymentSuccess == false) {
+						const Toast = this.$swal.mixin({
+							toast: true,
+							position: "top-end",
+							showConfirmButton: false,
+							timer: 3000,
+							didOpen: toast => {
+								toast.addEventListener("mouseenter", this.$swal.stopTimer);
+								toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+							}
+						});
 
-				const Toast = this.$swal.mixin({
-					toast: true,
-					position: "top-end",
-					showConfirmButton: false,
-					timer: 3000,
-					didOpen: toast => {
-						toast.addEventListener("mouseenter", this.$swal.stopTimer);
-						toast.addEventListener("mouseleave", this.$swal.resumeTimer);
+						Toast.fire({ icon: "error", title: "تم إلغاء الدفع" });
 					}
 				});
+			}
 
-				Toast.fire({ icon: "error", title: "Payment canceled" });
+			if (this.$route.params.paymentSuccess == false) {
+				try {
+					this.$store.dispatch("model/sendReq", {
+						url: "payment/confirmed/cancel",
+						method: "create",
+						item: JSON.stringify({
+							transactionid: this.$route.params.sessionId
+						})
+					});
+				} catch (err) {
+					//
+				}
 			}
 		},
+
 		computed: {
 			...mapState("model", {
 				data: s => s.data,
 				isloading: s => s.isloading
 			})
 		},
+
 		methods: {
 			getAll() {
-				this.$store.dispatch("model/sendReq", {
+				return this.$store.dispatch("model/sendReq", {
 					method: "all",
 					url: "course",
 					params: { ...this.query }
 				});
 			}
-		},
-		created() {
-			this.getAll();
 		}
 	};
 </script>

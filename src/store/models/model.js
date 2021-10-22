@@ -6,7 +6,7 @@ export default {
 	namespaced: true,
 	state: {
 		isloading: false,
-		data: [],
+		data: { results: [] },
 		errors: [],
 		current: {}
 	},

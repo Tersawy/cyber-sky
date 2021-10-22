@@ -99,6 +99,10 @@ Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum ass
 Iste minus et. Non necessitatibus ut est est id amet. Officiis sequi dolorum assumenda ipsam magnam cum possimus. Laudantium nulla amet tempore excepturi id expedita dolorum
             `
 			};
+		},
+
+		mounted() {
+			this.setLoading();
 		}
 	};
 </script>

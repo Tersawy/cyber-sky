@@ -117,14 +117,22 @@
 			],
 			list: ["متطلب أساسي لإتمام الكورس", "متطلب أساسي لإتمام الكورس", "متطلب أساسي لإتمام الكورس", "متطلب أساسي لإتمام الكورس", "متطلب أساسي لإتمام الكورس"]
 		}),
+
+		async mounted() {
+			let id = this.$route.params.id;
+			try {
+				await this.$store.dispatch("model/sendReq", { method: "get", url: "course", id: id });
+			} catch (err) {
+				//
+			} finally {
+				this.setLoading();
+			}
+		},
+
 		computed: mapState({
 			current: s => s.model.current,
 			user: s => s.auth.user
-		}),
-		created() {
-			let id = this.$route.params.id;
-			this.$store.dispatch("model/sendReq", { method: "get", url: "course", id: id });
-		}
+		})
 	};
 </script>
 

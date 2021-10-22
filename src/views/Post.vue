@@ -31,14 +31,22 @@
 				post: {}
 			};
 		},
-		created() {
-			this.$store
-				.dispatch("model/sendReq", {
-					url: "blog/post",
-					method: "get",
-					id: this.$route.params.id
-				})
-				.then(resp => (this.post = resp.data));
+
+		async mounted() {
+			try {
+				let res = await this.getPost();
+				this.post = res.data;
+			} catch (err) {
+				//
+			} finally {
+				this.setLoading();
+			}
+		},
+
+		methods: {
+			getPost() {
+				return this.$store.dispatch("model/sendReq", { url: "blog/post", method: "get", id: this.$route.params.id });
+			}
 		}
 	};
 </script>

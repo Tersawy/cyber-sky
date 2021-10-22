@@ -50,7 +50,7 @@
 				</h1>
 			</v-col>
 			<v-col cols="12">
-				<SectionCourse @finished="$store.commit('setLoading', false)" />
+				<SectionCourse @finished="setLoading" />
 			</v-col>
 		</v-layout>
 	</div>

@@ -24,6 +24,8 @@
 		async mounted() {
 			let token = this.$route.query.token;
 
+			this.setLoading();
+
 			if (token) {
 				try {
 					await this.$store.dispatch("auth/verify", token);

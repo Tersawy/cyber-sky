@@ -15,16 +15,9 @@
 				</v-col>
 			</v-layout>
 			<v-layout row wrap class="my-12">
-				<template v-if="!isloading">
-					<v-col md="6" lg="4" xl="3" cols="12" v-for="(post, i) in posts.results" :key="i">
-						<PostCard :data="post"></PostCard>
-					</v-col>
-				</template>
-				<template v-else>
-					<v-col cols="12" md="4">
-						<v-progress-linear buffer-value="0" color="success" stream></v-progress-linear>
-					</v-col>
-				</template>
+				<v-col md="6" lg="4" xl="3" cols="12" v-for="(post, i) in posts.results" :key="i">
+					<PostCard :data="post"></PostCard>
+				</v-col>
 			</v-layout>
 		</v-container>
 	</SectionPage>
@@ -45,15 +38,23 @@
 				section: null
 			};
 		},
+
+		async mounted() {
+			try {
+				await this.getAll();
+			} catch (err) {
+				//
+			} finally {
+				this.setLoading();
+			}
+		},
+
 		methods: {
 			getAll() {
-				this.$store.dispatch("model/sendReq", { method: "all", url: "blog/post", params: { section: this.section } }).then(resp => {
+				return this.$store.dispatch("model/sendReq", { method: "all", url: "blog/post", params: { section: this.section } }).then(resp => {
 					this.posts = resp.data;
 				});
 			}
-		},
-		created() {
-			this.getAll();
 		}
 	};
 </script>

@@ -22,18 +22,13 @@
 		components: {
 			SectionPage
 		},
-		data() {
-			return {
-				isloading: false
-			};
-		},
 
 		async mounted() {
-			this.isloading = true;
-
 			let { uid, token } = this.$route.params;
 
 			if (!uid || !token) return this.$router.push("/");
+
+			this.setLoading();
 
 			let params = { isTokenVerified: false, uid, token };
 
@@ -46,7 +41,6 @@
 			} catch (err) {
 			} finally {
 				this.$router.push({ name: "Home", params });
-				this.isloading = false;
 			}
 		}
 	};

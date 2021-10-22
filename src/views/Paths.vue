@@ -493,15 +493,20 @@
 		components: {
 			SectionPage
 		},
+
+		async mounted() {
+			try {
+				await this.$store.dispatch("model/sendReq", { url: "course/paths", method: "all" });
+			} catch (err) {
+				//
+			} finally {
+				this.setLoading();
+			}
+		},
+
 		computed: mapState("model", {
 			data: s => s.data.results
-		}),
-		created() {
-			this.$store.dispatch("model/sendReq", {
-				url: "course/paths",
-				method: "all"
-			});
-		}
+		})
 	};
 </script>
 

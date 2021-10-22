@@ -66,22 +66,29 @@
 			};
 		},
 		async mounted() {
-			this.getAll();
-
-			if (this.$route.params.paymentSuccess) {
-				await this.$store.dispatch("model/sendReq", {
-					url: "payment/confirmed",
-					method: "create",
-					item: JSON.stringify({
-						transactionid: this.$route.params.sessionId
-					})
-				});
-
-				this.$swal.fire({
-					icon: "success",
-					title: "تهانينا, تم شراء الدورة بنجاح",
-					confirmButtonText: "اغلاق",
-					confirmButtonColor: "#0082c6"
+			try {
+				await this.getAll();
+				if (this.$route.params.paymentSuccess) {
+					await this.$store.dispatch("model/sendReq", {
+						url: "payment/confirmed",
+						method: "create",
+						item: JSON.stringify({
+							transactionid: this.$route.params.sessionId
+						})
+					});
+				}
+			} catch (err) {
+				//
+			} finally {
+				this.setLoading(() => {
+					if (this.$route.params.paymentSuccess) {
+						this.$swal.fire({
+							icon: "success",
+							title: "تهانينا, تم شراء الدورة بنجاح",
+							confirmButtonText: "اغلاق",
+							confirmButtonColor: "#0082c6"
+						});
+					}
 				});
 			}
 		},
@@ -95,7 +102,7 @@
 		},
 		methods: {
 			getAll() {
-				this.$store
+				return this.$store
 					.dispatch("model/sendReq", {
 						method: "all",
 						url: "course"

@@ -48,18 +48,24 @@
 				]
 			};
 		},
+		async mounted() {
+			try {
+				if (this.$route.params.slug) {
+					await this.$store.dispatch("model/sendReq", { method: "get", url: `meeting`, id: this.$route.params.slug });
+				} else {
+					await this.$store.dispatch("model/sendReq", { method: "get", url: "course", id: this.$route.params.id });
+				}
+			} catch (err) {
+				//
+			} finally {
+				this.setLoading();
+			}
+		},
 		computed: mapState("model", {
 			data: s => s.data,
 			isloading: s => s.isloading,
 			current: s => s.current
-		}),
-		created() {
-			if (this.$route.params.slug) {
-				this.$store.dispatch("model/sendReq", { method: "get", url: `meeting`, id: this.$route.params.slug });
-			} else {
-				this.$store.dispatch("model/sendReq", { method: "get", url: "course", id: this.$route.params.id });
-			}
-		}
+		})
 	};
 </script>
 
