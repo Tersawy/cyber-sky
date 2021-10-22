@@ -20,7 +20,7 @@
 
 		<div class="fill-height" style="background-color: white;">
 			<v-container>
-				<v-layout row wrap class="justify-center" style="top: -220px;position: relative;z-index: 1;">
+				<v-layout row wrap class="justify-center" style="top: -220px;position: relative;z-index: 5;">
 					<v-col cols="12" xl="10" md="12">
 						<h1>المسارات التعليمية</h1>
 					</v-col>
@@ -526,7 +526,7 @@
 		top: 0px;
 		min-height: 30%;
 		background-position: 0px 0px;
-		height: 100%;
+		height: 45%;
 		left: 0px;
 		width: 100%;
 		position: absolute;
