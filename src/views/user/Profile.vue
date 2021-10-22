@@ -1,12 +1,12 @@
 <template>
 	<SectionPage>
 		<v-container>
-			<v-layout row warp align-end style="height: 20rem;">
+			<v-layout row wrap align-end style="height: 20rem;">
 				<v-col cols="12" md="6">
 					<h1 style="font-size: 40px;">تعديل الملف الشخصي</h1>
 				</v-col>
 			</v-layout>
-			<v-layout row warp class="my-12">
+			<v-layout row wrap class="my-12">
 				<v-col cols="8">
 					<v-form ref="form" @submit.prevent="submit">
 						<v-row>

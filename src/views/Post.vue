@@ -1,14 +1,14 @@
 <template>
 	<SectionPage>
 		<v-container>
-			<v-layout row warp align-end style="height: 16rem;">
+			<v-layout row wrap align-end style="height: 16rem;">
 				<v-col cols="12" md="6">
 					<h1 class="mt-2" style="font-size: 40px;font-weight: lighter;">
 						{{ post.title }}
 					</h1>
 				</v-col>
 			</v-layout>
-			<v-layout row warp class="my-12">
+			<v-layout row wrap class="my-12">
 				<v-col cols="12">
 					<PostCard :full="1" :id="$route.params.id" :data="post"></PostCard>
 				</v-col>

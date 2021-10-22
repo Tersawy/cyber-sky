@@ -1,7 +1,7 @@
 <template>
 	<SectionPage>
 		<v-container>
-			<v-layout row warp align-end class="mt-16" style="height: 22rem;">
+			<v-layout row wrap align-end class="mt-16" style="height: 22rem;">
 				<v-col cols="12">
 					<v-breadcrumbs :items="items" divider=">>"> </v-breadcrumbs>
 

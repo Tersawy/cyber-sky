@@ -1,7 +1,7 @@
 <template>
 	<SectionPage>
 		<v-container style="margin-top: 16%;">
-			<v-layout row warp class="my-16" align-end>
+			<v-layout row wrap class="my-16" align-end>
 				<TermsOfServiceCard></TermsOfServiceCard>
 			</v-layout>
 		</v-container>

@@ -1,7 +1,7 @@
 <template>
 	<SectionPage>
 		<v-container>
-			<v-layout row warp align-end style="height: 20rem">
+			<v-layout row wrap align-end style="height: 20rem">
 				<v-col cols="12" md="6">
 					<v-list-item>
 						<v-list-item-content>

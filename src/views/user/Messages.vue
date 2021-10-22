@@ -1,7 +1,7 @@
 <template>
 	<SectionPage>
 		<v-container class="">
-			<v-layout row warp>
+			<v-layout row wrap>
 				<v-col cols="6">
 					<h1 class="white--text">الرسائل</h1>
 					<v-breadcrumbs dark :items="items" id="breadcrumb" class="mt-n4">
@@ -33,7 +33,7 @@
 				</v-col>
 				<v-col cols="12" class="mt-n3">
 					<v-card>
-						<v-layout row warp>
+						<v-layout row wrap>
 							<v-col cols="12" md="4">
 								<v-list>
 									<template v-for="i in 5">

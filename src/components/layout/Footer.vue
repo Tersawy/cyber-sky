@@ -3,7 +3,7 @@
 		<v-img src="./../../assets/footer/footer_1.png">
 			<v-container grid-list-xs>
 				<v-sheet color="#fff0">
-					<v-layout row warp class="ma-4 text-center text-md-right" align-center>
+					<v-layout row wrap class="ma-4 text-center text-md-right" align-center>
 						<v-col cols="12" md="4">
 							<v-img contain class="mx-auto mb-8" width="50%" :src="logo_footer"></v-img>
 							<p style="word-break: break-word;">
