@@ -57,7 +57,7 @@
 							<img class="user-img" :src="require(`./../../assets/suport/${opinion.userImg}`)" />
 						</div>
 						<p class="user-opinion">
-							<span class="user-text"> {{ opinion.text }} </span>
+							<span class="user-text" :dir="opinion.dir"> {{ opinion.text }} </span>
 							<span class="username text-right w-100"> — {{ opinion.username }} </span>
 						</p>
 					</div>
@@ -84,18 +84,28 @@
 					userImg: "Nazim_Birmingham_UK.png",
 					username: "Nazim Birmingham - UK",
 					text:
-						"Grateful for the opportunity of having Ismael as a trainer for CEH. He has the ability to teach at all levels and can cater to different learning styles. Training sessions were very informative yet very engaging and he always reinforced knowledge through practicals and challenges. This has definitely helped to me to progress my journey in cyber security as everything I had learnt with Ismael I was able to effectively put it into use in a real life environment and I pretty much transitioned seamlessly."
+						"Grateful for the opportunity of having Ismael as a trainer for CEH. He has the ability to teach at all levels and can cater to different learning styles. Training sessions were very informative yet very engaging and he always reinforced knowledge through practicals and challenges. This has definitely helped to me to progress my journey in cyber security as everything I had learnt with Ismael I was able to effectively put it into use in a real life environment and I pretty much transitioned seamlessly.",
+					dir: "ltr"
+				},
+				{
+					userImg: "مشاري_الكويت.png",
+					username: "مشاري - الكويت",
+					text: "تشرفت بدراسة كورس CSJP مع مدربين منصة CyberSky مع نخبة من المهندسين ساعدني الكورس في اجتياز شهادة eCPPT وحصولي على ترقية في الوظيفة.",
+					dir: "rtl"
+				},
+				{
+					userImg: "Ozmn_Birmingham_UK.png",
+					username: "Ozmn Birmingham - UK",
+					text:
+						"Ismail is an absolutely incredible Python teacher. I have just completed the course on Python and I can say I understood every single thing thanks to his excellent teaching style and skills. I would definitely recommend Ismail as an ethical hacker as well as a Python instructor.",
+					dir: "ltr"
 				},
 				{
 					userImg: "محمود_فلسطين.png",
 					username: "محمود - فلسطين",
 					text:
-						"Ismail is an absolutely incredible Python teacher. I have just completed the course on Python and I can say I understood every single thing thanks to his excellent teaching style and skills. I would definitely recommend Ismail as an ethical hacker as well as a Python instructor."
-				},
-				{
-					userImg: "مشاري_الكويت.png",
-					username: "مشاري - الكويت",
-					text: "تشرفت بدراسة كورس CSJP مع مدربين منصة CyberSky مع نخبة من المهندسين ساعدني الكورس في اجتياز شهادة eCPPT وحصولي على ترقية في الوظيفة."
+						"اشتركت في كورس CSJP من منصة CyberSky وكان  ممتاز جدا جدا بحتوي على أدق التفاصيل ويغنيك عن البحث اونلاين على المعلومة بحيث انه يحتوي على كل المطلوب  والمدربين معاك لحظة بلحظة.",
+					dir: "rtl"
 				}
 			],
 			carouselResponsiveOptions: [
@@ -163,7 +173,7 @@
 			.card-opinion {
 				display: flex;
 				box-shadow: 2px 2px 2px #bdbdbd;
-				min-height: 200px;
+				min-height: 235px;
 				margin: 0 15px;
 				background-color: #fff;
 				.img-container {
