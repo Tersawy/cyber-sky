@@ -7,7 +7,7 @@
 						Cyber Sky
 					</h1>
 					<p class="text-h5 text-sm-h5 text-md-h4 mt-2">
-						المنصة التدريبية الأولى من نوعها في تقديم دورات في المجال السيبراني للطلاب الجدد , متوسطى المستوى أو أي شخص يريد تعلم الأمن السيبراني
+						{{ $store.state.setting.description }}
 					</p>
 					<v-text-field
 						dark
