@@ -31,6 +31,7 @@ export default {
 	},
 	actions: {
 		verify({ commit }, token) {
+			delete axios.defaults.headers.Authorization;
 			return axios.get(`verify/?token=${token}`);
 		},
 		logout({ commit, state }) {
@@ -40,6 +41,9 @@ export default {
 		},
 		social({ commit, state }, data) {
 			state.errors = {};
+
+			delete axios.defaults.headers.Authorization;
+
 			return axios.post(`social/${data.type}/`, data).then(({ data }) => {
 				// state.isLogin = true
 				commit("initToken", data.tokens.access);
