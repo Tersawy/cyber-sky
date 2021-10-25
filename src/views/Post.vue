@@ -1,8 +1,8 @@
 <template>
 	<SectionPage>
 		<v-container>
-			<v-layout row wrap align-end style="height: 16rem;">
-				<v-col cols="12" md="6">
+			<v-layout row wrap align-end style="height: 16rem;" class="mt-16">
+				<v-col cols="12">
 					<h1 class="mt-2" style="font-size: 40px;font-weight: lighter;">
 						{{ post.title }}
 					</h1>
