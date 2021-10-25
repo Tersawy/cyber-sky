@@ -47,26 +47,14 @@ export default {
 			});
 		},
 		update({ commit, state }, data) {
-			return axios
-				.put(`user/`, data, {
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-						"Content-Type": "application/json"
-					}
-				})
-				.then(({ data }) => {
-					state.user = data;
-					return data;
-				});
+			return axios.put(`user/`, data).then(({ data }) => {
+				state.user = data;
+				return data;
+			});
 		},
 		user({ commit, state }) {
 			return axios
-				.get(`user/`, {
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-						"Content-Type": "application/json"
-					}
-				})
+				.get(`user/`)
 				.then(({ data }) => {
 					state.isLogin = true;
 					state.user = data;
@@ -80,6 +68,9 @@ export default {
 		},
 		login({ commit, state }, data) {
 			state.errors = {};
+
+			delete axios.defaults.headers.Authorization;
+
 			return axios
 				.post(`login/`, data)
 				.then(({ data }) => {
@@ -95,6 +86,9 @@ export default {
 
 		register({ commit, state }, data) {
 			state.errors = {};
+
+			delete axios.defaults.headers.Authorization;
+
 			return axios
 				.post(`register/`, data)
 				.then(({ data }) => {
