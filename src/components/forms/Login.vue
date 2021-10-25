@@ -28,14 +28,14 @@
 						تسجيل الدخول
 					</v-btn>
 
-					<facebook-login hidden style="width: 100%" class="button" ref="facebook" appId="705914536902929" @login="onFacebookLogin"> </facebook-login>
+					<!-- <facebook-login hidden style="width: 100%" class="button" ref="facebook" appId="705914536902929" @login="onFacebookLogin"> </facebook-login> -->
 
-					<v-btn color="blue darken-3 white--text" @click="facebook" type="button" block large class="mt-5">
+					<!-- <v-btn color="blue darken-3 white--text" @click="facebook" type="button" block large class="mt-5">
 						انشاء اشتراك بستخدام فيس بوك
-					</v-btn>
-					<v-btn outlined color="grey darken-3" @click="google()" type="button" block large class="mt-1  white--text">
+					</v-btn> -->
+					<!-- <v-btn outlined color="grey darken-3" @click="google()" type="button" block large class="mt-1  white--text">
 						انشاء اشتراك بستخدام Google
-					</v-btn>
+					</v-btn> -->
 				</vue-recaptcha>
 			</v-col>
 		</v-row>
