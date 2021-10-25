@@ -56,13 +56,13 @@
 						<v-text-field
 							name="tx_id"
 							:error-messages="errors.tx_id"
-							label="Transaction ID "
+							label="Transaction ID"
 							v-model="payment.tx_id"
 							id="tx_id"
 							outlined
-							hint="Transaction ID ادخل رقم العملية  "
+							hint="Transaction ID ادخل رقم العملية"
 						></v-text-field>
-						<a class="text-decoration-none" href="whatsapp://send?text=Hello">
+						<a class="text-decoration-none" :href="`whatsapp://send?text=Hello&phone=${$store.state.setting.phone_primary}`">
 							<span class="font-weight-bold text-decoration-underline mb-8 green--text ml-2" style="font-size:13px">بعد إكمال الطلب قم بالتواصل مع الدعم الفني</span>
 							<v-icon dense color="#4CAF50" style="cursor:pointer">fa-whatsapp</v-icon>
 						</a>
