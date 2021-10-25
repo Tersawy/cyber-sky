@@ -3,7 +3,7 @@
 		<v-img src="./../../assets/footer/footer_1.png">
 			<v-container grid-list-xs>
 				<v-sheet color="#fff0">
-					<v-layout row wrap class="ma-4 text-center text-md-right" align-center>
+					<v-layout row wrap class="ma-4 text-center text-md-right">
 						<v-col cols="12" md="4">
 							<v-img contain class="mx-auto mb-8" width="50%" :src="logo_footer"></v-img>
 							<p style="word-break: break-word;">
@@ -21,9 +21,36 @@
 						</v-col>
 						<v-col cols="12" md="3" id="contact">
 							<h3 class="mx-auto mb-8">لديك سؤال أو استفسار</h3>
-							<p>E-mail: {{ $store.state.setting.email }}</p>
-							<p>{{ $store.state.setting.phone_primary }}</p>
-							<p>{{ $store.state.setting.phone_second }}</p>
+							<p>
+								<a class="text-decoration-none" :href="`mailto:${$store.state.setting.email}`">
+									<span class="d-inline-block" style="width:35px">
+										<v-icon class="mb-1">fa-envelope</v-icon>
+									</span>
+									<span class="d-inline-block" style="width:150px">
+										{{ $store.state.setting.email }}
+									</span>
+								</a>
+							</p>
+							<p>
+								<a class="text-decoration-none" :href="`whatsapp://send?text=Hello&phone=${$store.state.setting.phone_primary}`">
+									<span class="d-inline-block" style="width:35px">
+										<v-icon class="mb-1" color="green">fa-whatsapp</v-icon>
+									</span>
+									<span class="d-inline-block" style="width:150px">
+										{{ $store.state.setting.phone_primary }}
+									</span>
+								</a>
+							</p>
+							<p>
+								<a class="text-decoration-none" :href="`tel:${$store.state.setting.phone_second}`">
+									<span class="d-inline-block" style="width:35px">
+										<v-icon class="mb-1" color="blue">fa-phone</v-icon>
+									</span>
+									<span class="d-inline-block" style="width:150px">
+										{{ $store.state.setting.phone_second }}
+									</span>
+								</a>
+							</p>
 						</v-col>
 						<v-col cols="12" md="3" id="contact">
 							<h3 class="mx-auto">تابعنا</h3>
