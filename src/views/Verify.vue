@@ -31,7 +31,9 @@
 					await this.$store.dispatch("auth/verify", token);
 
 					return this.$router.push({ name: "Home", params: { verified: true } });
-				} catch (_err) {}
+				} catch (_err) {
+					return this.$router.push({ name: "Home", params: { verified: false } });
+				}
 			}
 
 			this.$router.push("/");
