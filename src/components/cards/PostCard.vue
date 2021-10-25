@@ -1,12 +1,13 @@
 <template>
 	<v-hover>
 		<template v-slot:default="{ hover }">
-			<v-card :elevation="hover && !full ? 10 : 1" :to="full ? '#' : `post/${data.id}/`">
+			<v-card :elevation="hover && !full ? 10 : 1" :to="full ? `` : `/post/${data.id}/`">
 				<v-card class="pa-1" flat v-if="data.image">
 					<v-img
 						:src="`https://f9296f68580049556956dec4fa094987.cyber-sky.org/media/${data.image}`"
 						:lazy-src="require('../../assets/logo end.jpg')"
 						:height="full ? '600' : '177'"
+						width="100%"
 					></v-img>
 				</v-card>
 
@@ -41,4 +42,10 @@
 	};
 </script>
 
-<style></style>
+<style lang="scss">
+	.v-card__text {
+		img {
+			width: 100%;
+		}
+	}
+</style>
