@@ -111,6 +111,15 @@
 					});
 			}
 
+			if (params.verified == false) {
+				this.$swal.fire({
+					icon: "error",
+					title: "انتهت صلاحية الرابط",
+					confirmButtonText: "إغلاق",
+					confirmButtonColor: "#0082c6"
+				});
+			}
+
 			if (params.isTokenVerified) {
 				this.$store.commit("setChangePasswordDailog", true);
 			}
@@ -120,7 +129,7 @@
 					toast: true,
 					position: "top-end",
 					showConfirmButton: false,
-					timer: 5000,
+					timer: 10000,
 					didOpen: toast => {
 						toast.addEventListener("mouseenter", this.$swal.stopTimer);
 						toast.addEventListener("mouseleave", this.$swal.resumeTimer);
