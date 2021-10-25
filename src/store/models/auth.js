@@ -1,10 +1,6 @@
 import axios from "axios";
 
 axios.defaults.baseURL = "https://3b13c294758ac0ddce1a755cccdcbfd1.cyber-sky.org/";
-axios.defaults.headers = {
-	Authorization: `Bearer ${localStorage.getItem("access_token")}`,
-	"Content-Type": "application/json"
-};
 
 export default {
 	namespaced: true,
@@ -31,7 +27,6 @@ export default {
 	},
 	actions: {
 		verify({ commit }, token) {
-			delete axios.defaults.headers.Authorization;
 			return axios.get(`verify/?token=${token}`);
 		},
 		logout({ commit, state }) {
@@ -51,14 +46,26 @@ export default {
 			});
 		},
 		update({ commit, state }, data) {
-			return axios.put(`user/`, data).then(({ data }) => {
-				state.user = data;
-				return data;
-			});
+			return axios
+				.put(`user/`, data, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+						"Content-Type": "application/json"
+					}
+				})
+				.then(({ data }) => {
+					state.user = data;
+					return data;
+				});
 		},
 		user({ commit, state }) {
 			return axios
-				.get(`user/`)
+				.get(`user/`, {
+					headers: {
+						Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+						"Content-Type": "application/json"
+					}
+				})
 				.then(({ data }) => {
 					state.isLogin = true;
 					state.user = data;
@@ -72,8 +79,6 @@ export default {
 		},
 		login({ commit, state }, data) {
 			state.errors = {};
-
-			delete axios.defaults.headers.Authorization;
 
 			return axios
 				.post(`login/`, data)
@@ -91,8 +96,6 @@ export default {
 		register({ commit, state }, data) {
 			state.errors = {};
 
-			delete axios.defaults.headers.Authorization;
-
 			return axios
 				.post(`register/`, data)
 				.then(({ data }) => {
@@ -107,8 +110,6 @@ export default {
 
 		async resetPasswordByEmail({ state }, payload) {
 			state.errors = {};
-
-			delete axios.defaults.headers.Authorization;
 
 			try {
 				//
@@ -127,8 +128,6 @@ export default {
 		async verifyToken({ state }, { uid, token }) {
 			state.errors = {};
 
-			delete axios.defaults.headers.Authorization;
-
 			try {
 				//
 				let { data } = await axios.get(`password-reset/${uid}/${token}`);
@@ -145,8 +144,6 @@ export default {
 
 		async changePassword({ state }, payload) {
 			state.errors = {};
-
-			delete axios.defaults.headers.Authorization;
 
 			try {
 				//
