@@ -1,6 +1,6 @@
 <template>
 	<SectionPage>
-		<v-container>
+		<v-container v-if="Object.keys(current).length">
 			<v-layout row wrap align-end class="mt-16" style="height: 22rem;">
 				<v-col cols="12">
 					<v-breadcrumbs :items="items" divider=">>"> </v-breadcrumbs>
@@ -55,11 +55,13 @@
 				</v-col>
 			</v-layout>
 		</v-container>
+		<NotFound v-else />
 	</SectionPage>
 </template>
 
 <script>
 	import { mapState } from "vuex";
+	const NotFound = () => import("@/components/NotFound.vue");
 	const SectionPage = () => import("@component/Section.vue");
 	const EducationalContentTab = () => import("@component/course/tabs/EducationalContent.vue");
 	const AboutTeacherTab = () => import("@component/course/tabs/AboutTeacher.vue");
@@ -74,7 +76,8 @@
 			EducationalContentTab,
 			AboutTeacherTab,
 			RatingTab,
-			RequirementsTab
+			RequirementsTab,
+			NotFound
 		},
 		data: () => ({
 			userHaveCoures: true,
@@ -120,10 +123,15 @@
 
 		async mounted() {
 			let id = this.$route.params.id;
+
+			if (!id) return this.$router.push("/courses");
+
 			try {
 				await this.$store.dispatch("model/sendReq", { method: "get", url: "course", id: id });
 			} catch (err) {
 				//
+				if (err.response.status == 404) {
+				}
 			} finally {
 				this.setLoading();
 			}

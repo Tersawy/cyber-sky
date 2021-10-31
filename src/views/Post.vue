@@ -1,6 +1,6 @@
 <template>
 	<SectionPage>
-		<v-container>
+		<v-container v-if="Object.keys(post).length">
 			<v-layout row wrap align-end style="height: 16rem;" class="mt-16">
 				<v-col cols="12">
 					<h1 class="mt-2" style="font-size: 40px;font-weight: lighter;">
@@ -14,17 +14,20 @@
 				</v-col>
 			</v-layout>
 		</v-container>
+		<NotFound v-else />
 	</SectionPage>
 </template>
 
 <script>
 	const PostCard = () => import("@component/cards/PostCard.vue");
 	const SectionPage = () => import("@component/Section.vue");
+	const NotFound = () => import("@/components/NotFound.vue");
 
 	export default {
 		components: {
 			PostCard,
-			SectionPage
+			SectionPage,
+			NotFound
 		},
 		data() {
 			return {
