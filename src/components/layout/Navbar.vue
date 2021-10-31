@@ -138,7 +138,6 @@
 			},
 			async logout() {
 				await this.$store.dispatch("auth/logout");
-				location.reload(true);
 				this.$router.push("/");
 			},
 			showInDevDailog() {
