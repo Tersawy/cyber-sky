@@ -18,11 +18,11 @@
 						التدوينات
 					</h1>
 				</v-col>
-				<v-col sm="6" lg="4" xl="3" cols="12" v-for="post in posts.results" :key="post.id">
+				<v-col sm="6" lg="4" xl="3" cols="12" v-for="post in posts" :key="post.id">
 					<PostCard class="mt-7" :data="post"> </PostCard>
 				</v-col>
 				<v-col cols="12" class="text-center">
-					<v-btn elevation="0" large v-if="posts.results && posts.results.length" class="mx-2 mt-8 font-weight-bold" to="/blog">
+					<v-btn elevation="0" large class="mx-2 mt-8 font-weight-bold" href="https://blog.cyber-sky.org" target="blank">
 						المزيد...
 					</v-btn>
 				</v-col>
@@ -137,7 +137,25 @@
 			],
 			supertImages: ["Loreelei.jpg", "Khadijah_Abdul_Nabi.jpg", "Dariya_Khokhel.jpg"],
 			courses: [],
-			posts: []
+			posts: [
+				{
+					title: "9 ملايين نظام اندرويد مصاب ببرمجيات خبيثة",
+					image: "https://blog.cyber-sky.org/wp-content/uploads/2021/11/photo_2021-11-24_16-37-34-780x470.jpg",
+					category: "اخبار سايبر",
+					link: "https://blog.cyber-sky.org/9-mills-infected-devices",
+					description:
+						"هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها. ولذلك يتم استخدام طريقة لوريم إيبسوم لأنها تعطي توزيعاَ طبيعياَ -إلى حد ما- للأحرف عوضاً عن استخدام",
+					date: "2021-10-14T01:40:03.635768Z"
+				},
+				{
+					title: "11 مكتبة في بايثون عليك عدم استخدامها",
+					image: "https://blog.cyber-sky.org/wp-content/uploads/2021/11/All-In-One-2021-Super-Sized-Ethical-Hacking-Bundle.jpg",
+					category: "اخبار سايبر",
+					link: "https://blog.cyber-sky.org/python-11-packages-not-safe",
+					description: "أحدث المكتبات المتوفرة في بايثون على شبكة الانترنت تحتوي على أكثر من 11 ملايين برمجيات خبيثة",
+					date: "2021-10-24T13:20:59.717051Z"
+				}
+			]
 		}),
 		computed: mapState("model", {
 			data: s => s.data,
@@ -150,7 +168,7 @@
 			try {
 				let [coursesResponse, postsResponse] = await Promise.all([coursesRequest, postsRequest]);
 				this.courses = coursesResponse.data;
-				this.posts = postsResponse.data;
+				// this.posts = postsResponse.data;
 			} catch (err) {
 				//
 			} finally {

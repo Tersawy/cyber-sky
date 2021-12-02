@@ -14,7 +14,7 @@
 				<div v-if="$vuetify.breakpoint.lgAndUp">
 					<v-btn text color="white" to="/courses" large>الدورات التدريبية</v-btn>
 					<v-btn text color="white" to="/paths" large>المسارات التعليمية</v-btn>
-					<v-btn text color="white" large to="/blog">المدونة</v-btn>
+					<v-btn text color="white" large href="https://blog.cyber-sky.org" target="blank">المدونة</v-btn>
 					<v-btn text color="white" large class="text-capitalize font-weight-medium" @click="showInDevDailog"> مختبرات افتراضية </v-btn>
 				</div>
 

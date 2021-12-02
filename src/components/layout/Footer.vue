@@ -14,7 +14,7 @@
 							<h3 class="mx-auto mb-8">روابط تهمك</h3>
 							<p>
 								<v-btn class="footer-button" to="/paths" text block link>المسارات التعليمية</v-btn>
-								<v-btn class="footer-button" to="/blog" text block>المدونة</v-btn>
+								<v-btn class="footer-button" href="https://blog.cyber-sky.org" target="blank" text block>المدونة</v-btn>
 								<v-btn class="footer-button" to="/service" text block>الشروط و الأحكام</v-btn>
 								<v-btn class="footer-button" to="/privacy" text block>سياسة الخصوصية</v-btn>
 							</p>
