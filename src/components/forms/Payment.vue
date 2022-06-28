@@ -146,7 +146,7 @@
 						actionTo: "https://e-commerce.bop.ps/EcomPayment/RedirectAuthLink",
 						MerID: "456020456",
 						AcqID: "000089",
-						MerRespURL: "https://user.cyber-sky.org/payment-response",
+						MerRespURL: "https://user.cyber-sky.org/payment/payment-response/",
 						PurchaseAmt: "",
 						PurchaseCurrency: "840",
 						PurchaseCurrencyExponent: "2",
