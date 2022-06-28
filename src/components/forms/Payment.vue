@@ -1,4 +1,5 @@
 <template>
+<div>
 	<v-form @submit.prevent="submit" ref="form">
 		<h2 class="mt-sm-8">طريقة الدفع</h2>
 		<p>إختر طريقة الدفع المناسبة لك من طرق الدفع المتوفرة أدناه:-</p>
@@ -107,6 +108,21 @@
 			</v-col>
 		</v-row>
 	</v-form>
+	<form method="post" ref="paymentForm" :action="psData.actionTo" >
+    <input type="hidden" name="Version" :value="psData.Version" />
+    <input type="hidden" name="MerID" :value="psData.MerID" />
+    <input type="hidden" name="AcqID" :value="psData.AcqID" />
+    <input type="hidden" name="MerRespURL" :value="psData.MerRespURL" />
+    <input type="hidden" name="PurchaseAmt" :value="psData.PurchaseAmt" />
+    <input type="hidden" name="PurchaseCurrency" :value="psData.PurchaseCurrency" />
+    <input type="hidden" name="PurchaseCurrencyExponent" :value="psData.PurchaseCurrencyExponent" />
+    <input type="hidden" name="OrderID" :value="psData.OrderID" />
+    <input type="hidden" name="CaptureFlag" :value="psData.CaptureFlag" />
+    <input type="hidden" name="Signature" :value="psData.Signature" />
+    <input type="hidden" name="SignatureMethod" :value="psData.SignatureMethod" />
+	</form>
+</div>
+
 </template>
 
 <script>
@@ -124,8 +140,51 @@
 				isMeeting: false,
 				sessionId: "",
 				publishableKey: "",
-				payment: { accept: false, type: "cc", address: "TVkTzcWUsNZTrGzHYs2PNejnK1yRTHcoRG", tx_id: "" }
+				payment: { accept: false, type: "cc", address: "TVkTzcWUsNZTrGzHYs2PNejnK1yRTHcoRG", tx_id: "" },
+				psData: {
+						Version: "1.0.0",
+						actionTo: "https://e-commerce.bop.ps/EcomPayment/RedirectAuthLink",
+						MerID: "456020456",
+						AcqID: "000089",
+						MerRespURL: "https://user.cyber-sky.org/payment-response",
+						PurchaseAmt: "",
+						PurchaseCurrency: "840",
+						PurchaseCurrencyExponent: "2",
+						OrderID: "",
+						CaptureFlag: "M",
+						Signature: "",
+						SignatureMethod: "SHA1"
+					}
 			};
+		},
+		mounted() {
+			if (this.$route.query.status == "success") {
+				this.$swal
+							.fire({
+								icon: "warning",
+								title: "لقد قمت بشراء الكورس يرجى التحقق من البريد الالكتروني",
+								confirmButtonText: "رجوع",
+								confirmButtonColor: "#0082c6"
+							})
+							.then(result => {
+								if (result.isConfirmed) {
+									this.$router.push("/courses");
+								}
+							});
+			} else if (this.$route.query.status == "fail") {
+					this.$swal
+								.fire({
+									icon: "error",
+									title: "تم رفض العملية, الرجاء التحقق من البطاقة الخاصة بك",
+									confirmButtonText: "رجوع",
+									confirmButtonColor: "#f27474"
+								})
+								.then(result => {
+									if (result.isConfirmed) {
+										this.$router.push("/courses");
+									}
+								});
+			}
 		},
 		watch: {
 			data(data) {
@@ -186,21 +245,11 @@
 
 					this.$store.state.user_courses.push(res.data);
 
-					if (res.data.sessionId) {
-						this.sessionId = res.data.sessionId;
-						return this.$refs.checkoutRef.redirectToCheckout();
-					}
+					this.psData.PurchaseAmt = res.data.amount;
+					this.psData.OrderID = res.data.orderId;
+					this.psData.Signature = res.data.base64hash;
 
-					let result = await this.$swal.fire({
-						icon: "warning",
-						title: "يرجى التحقق من البريد الالكتروني",
-						confirmButtonText: "رجوع",
-						confirmButtonColor: "#0082c6"
-					});
-
-					if (result.isConfirmed) {
-						this.$router.push("/courses");
-					}
+					this.$nextTick(() => this.$refs.paymentForm.submit());
 				} catch (err) {
 					if (err.response.data.error == "HAVE_COURSE") {
 						this.$swal
